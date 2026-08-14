@@ -263,53 +263,53 @@
         }
         .log-modal-header .close-btn:hover { color: #ff5555; }
 
-        /* 📜 로그 본문 영역 (양끝정렬 + 글자 크기 축소) */
+        /* 📜 로그 본문 영역 */
         .log-modal-content {
             padding: 16px 14px;
             overflow-y: auto;
             background: #ffffff;
-            text-align: justify; /* ✨ 양끝정렬 */
+            text-align: justify;
         }
 
-        /* ✨ 행동 지문: 한글 대사 폰트('Noto Sans KR')와 완전히 일치 + 이탈릭 + 크기 축소 */
+        /* ✨ 행동 지문: 가로 여백 증가(16px) & 글자 크기 축소(10px) */
         .log-modal-content p.action {
             font-family: 'Noto Sans KR', sans-serif;
             font-style: italic;
-            font-size: 11px; /* 한국어 대사와 사이즈 일치 */
+            font-size: 10px; /* 더 작게 축소 */
             line-height: 1.6;
-            color: #666666; /* 연한 톤 유지 */
+            color: #666666;
             margin-bottom: 14px;
             word-break: keep-all;
             background: #f9f9f9;
-            padding: 8px 10px;
+            padding: 10px 16px; /* ✨ 가로 여백 확장 */
             border-left: 2px solid #ccc;
-            text-align: justify; /* ✨ 양끝정렬 */
+            text-align: justify;
         }
 
-        /* ✨ 대사 영역 */
+        /* ✨ 대사 영역: 글자 크기 축소 */
         .log-modal-content div.dialogue {
             margin-bottom: 14px;
             padding: 2px 0;
-            text-align: justify; /* ✨ 양끝정렬 */
+            text-align: justify;
         }
         .log-modal-content div.dialogue .en {
             font-family: 'VT323', monospace;
-            font-size: 14px; /* 작게 축소 */
+            font-size: 13px; /* 축소 */
             font-weight: bold;
             color: #000;
             display: block;
             margin-bottom: 2px;
             letter-spacing: 0.3px;
-            text-align: justify; /* ✨ 양끝정렬 */
+            text-align: justify;
         }
         .log-modal-content div.dialogue .ko {
             font-family: 'Noto Sans KR', sans-serif;
-            font-size: 11px; /* 작게 축소 */
+            font-size: 10px; /* 축소 */
             font-weight: 700;
             color: #111;
             line-height: 1.5;
             word-break: keep-all;
-            text-align: justify; /* ✨ 양끝정렬 */
+            text-align: justify;
         }
 
         /* 🖼️ [GALLERY PAGE] */
