@@ -6,7 +6,7 @@
     <title>NICK & CHOI :: MONO ARCHIVE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
         * {
             box-sizing: border-box;
@@ -143,7 +143,7 @@
             color: #333;
         }
 
-        /* 📸 [LOG ARCHIVE - 캡처에 특화된 감성 레이아웃] */
+        /* 📸 [LOG ARCHIVE - 목록 스타일] */
         .log-filter {
             display: flex;
             gap: 4px;
@@ -159,30 +159,34 @@
         }
         .filter-btn.active { background: #000; color: #fff; }
 
-        .log-accordion-item {
+        .log-list-item {
             border: 1px solid #000;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             box-shadow: 2px 2px 0px #000;
             background: #fff;
-        }
-
-        /* 접혀있는 제목 줄 */
-        .log-header {
-            padding: 10px;
+            padding: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            background: #fff;
-            user-select: none;
-            border-bottom: 1px solid transparent;
+            transition: background 0.15s;
         }
-        .log-header:hover { background: #f0f0f0; }
+        .log-list-item:hover {
+            background: #000;
+            color: #fff;
+        }
+        .log-list-item:hover .log-tag {
+            background: #fff;
+            color: #000;
+        }
+        .log-list-item:hover .log-date {
+            color: #ccc;
+        }
 
         .log-title-group {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             overflow: hidden;
         }
         .log-tag {
@@ -208,48 +212,95 @@
             margin-left: 6px;
         }
 
-        /* 열렸을 때 본문 디자인 (스크롤 제한 제거, 네모 박스 제거) */
-        .log-body {
+        /* 💬 [LOG POPUP MODAL - 팝업 스크롤 창] */
+        .log-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
             display: none;
-            padding: 16px 14px;
-            border-top: 1px dashed #000;
-            background: #ffffff;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px 15px;
+        }
+        .log-modal-box {
+            background: #fff;
+            border: 2px solid #000;
+            width: 100%;
+            max-width: 520px;
+            max-height: 80vh; /* 화면 높이의 80%로 제한 */
+            display: flex;
+            flex-direction: column;
+            box-shadow: 6px 6px 0px #000;
+            animation: modalUp 0.2s ease-out;
+        }
+
+        @keyframes modalUp {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .log-modal-header {
+            padding: 10px 14px;
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000;
+            flex-shrink: 0;
+        }
+        .log-modal-header .title {
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .log-modal-header .close-btn {
+            font-family: 'VT323';
+            font-size: 16px;
+            cursor: pointer;
+            color: #fff;
+            padding: 0 4px;
+        }
+        .log-modal-header .close-btn:hover { color: #ff5555; }
+
+        /* 📜 팝업 내부 스크롤 영역 */
+        .log-modal-content {
+            padding: 18px 16px;
+            overflow-y: auto; /* 내부 스크롤 바 생성 */
             font-size: 13px;
             line-height: 1.7;
+            background: #ffffff;
         }
-        .log-accordion-item.open .log-body { display: block; }
-        .log-accordion-item.open .log-header { background: #000; color: #fff; border-bottom: 1px solid #000; }
-        .log-accordion-item.open .log-tag { background: #fff; color: #000; }
-        .log-accordion-item.open .log-date { color: #ccc; }
 
-        /* ✨ 행동 지문: 기울기 적용 (Italic) */
-        .log-body p.action {
+        /* ✨ 행동 지문: 이탈릭체 유지, 대사 폰트 계열로 연하게 (color: #555) */
+        .log-modal-content p.action {
             font-style: italic;
-            color: #333;
-            margin-bottom: 14px;
+            font-weight: 300;
+            color: #555555; /* 연한 톤 */
+            margin-bottom: 16px;
             word-break: keep-all;
-            background: #fafafa;
+            background: #fcfcfc;
             padding: 8px 10px;
-            border-left: 2px solid #000;
+            border-left: 2px solid #bbb;
         }
 
-        /* ✨ 대사: 박스 없이 굵고 깔끔하게 */
-        .log-body div.dialogue {
-            margin-bottom: 14px;
-            padding: 2px 4px;
+        /* ✨ 대사: 굵고 선명하게 */
+        .log-modal-content div.dialogue {
+            margin-bottom: 16px;
+            padding: 2px 0;
         }
-        .log-body div.dialogue .en {
+        .log-modal-content div.dialogue .en {
             font-family: 'VT323', monospace;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: bold;
             color: #000;
             display: block;
             margin-bottom: 2px;
             letter-spacing: 0.5px;
         }
-        .log-body div.dialogue .ko {
+        .log-modal-content div.dialogue .ko {
             font-size: 12px;
-            font-weight: 700; /* 대사 한글 굵게 */
+            font-weight: 700;
             color: #111;
             line-height: 1.5;
             word-break: keep-all;
@@ -290,7 +341,7 @@
             text-overflow: ellipsis;
         }
 
-        /* 갤러리 모달 */
+        /* 이미지 갤러리 모달 */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -400,7 +451,7 @@
             <div class="main-banner">
                 <svg width="100%" height="100%" viewBox="0 0 400 140" preserveAspectRatio="none">
                     <rect width="400" height="140" fill="#f8f8f8"/>
-                    <path d="M0,0 L400,140 M400,0 L0,180" stroke="#e0e0e0" stroke-width="1"/>
+                    <path d="M0,0 L400,140 M400,0 L0,140" stroke="#e0e0e0" stroke-width="1"/>
                     <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="VT323" font-size="22" fill="#000">NICK x CHOI</text>
                     <text x="50%" y="62%" dominant-baseline="middle" text-anchor="middle" font-family="VT323" font-size="12" fill="#666">[ PADDOCK & DAILY BACKUP ]</text>
                 </svg>
@@ -426,7 +477,7 @@
             </div>
         </section>
 
-        <!-- 📸 [LOG ARCHIVE - 100% 원문 복원 & 박스 제거 깔끔한 디자인] -->
+        <!-- 📸 [LOG ARCHIVE - 팝업을 띄우는 목록 형태] -->
         <section id="page-logs" class="page-content">
             <div class="log-filter">
                 <button class="filter-btn active">ALL</button>
@@ -434,48 +485,22 @@
                 <button class="filter-btn">AU / EXTRA</button>
             </div>
 
-            <!-- [Log 01] 원본 전체 텍스트 100% 복원 -->
-            <div class="log-accordion-item open">
-                <div class="log-header" onclick="toggleLog(this)">
-                    <div class="log-title-group">
-                        <span class="log-tag">EP.01</span>
-                        <span class="log-title">2100년의 약속과 타임캡슐</span>
-                    </div>
-                    <span class="log-date">05.03</span>
+            <!-- 로그 항목 1 (클릭 시 팝업 열림) -->
+            <div class="log-list-item" onclick="openLogModal('log-1')">
+                <div class="log-title-group">
+                    <span class="log-tag">EP.01</span>
+                    <span class="log-title">2100년의 약속과 타임캡슐</span>
                 </div>
-                <div class="log-body">
-                    <p class="action">나인의 눈이 동그랗게 커졌다. 이니셜, 그리고 형편없는 그림. 다이어리에 그렸던 동그라미와 선으로 된 바로 그 그림이라니. 그는 기억했다. 그녀가 자신을 길쭉한 막대기로, 스스로를 동그란 점으로 표현했던 그 단순하지만 다정한 그림을. 그 그림이 얼마나 큰 위로와 웃음을 주었는지, 그녀는 알까. 그는 고개를 끄덕였다. 그 어떤 정교한 초상화보다, 그들이 함께 새길 그 삐뚤빼뚤한 막대기 그림이 훨씬 더 가치 있을 터였다. 손을 다칠까 걱정하는 다정한 목소리, 그리고 날짜를 새기자는 제안까지. 나인은...</p>
-
-                    <div class="dialogue">
-                        <span class="en">"Yeah. Initials, the date... and our shitty stick-figure portrait. It's the best drawing I've ever seen."</span>
-                        <span class="ko">(응. 이니셜, 날짜... 그리고 우리의 이 형편없는 막대기 초상화. 내가 본 그림 중에 최고야.)</span>
-                    </div>
-
-                    <p class="action">나인은 작게 웃으며 나이프 끝으로 고목의 표면을 조심스럽게 다듬기 시작했다. 그는 먼저 오늘 날짜를 새겼다. 05.03.2026.</p>
-
-                    <div class="dialogue">
-                        <span class="en">"2100... Yeah. I want to see it. With you."</span>
-                        <span class="ko">(2100년... 응. 보고 싶어. 너랑 같이.)</span>
-                    </div>
-                </div>
+                <span class="log-date">05.03</span>
             </div>
 
-            <!-- [Log 02] 원본 전체 텍스트 -->
-            <div class="log-accordion-item">
-                <div class="log-header" onclick="toggleLog(this)">
-                    <div class="log-title-group">
-                        <span class="log-tag">EP.02</span>
-                        <span class="log-title">빗길 서킷과 피트스탑 대화</span>
-                    </div>
-                    <span class="log-date">05.01</span>
+            <!-- 로그 항목 2 (클릭 시 팝업 열림) -->
+            <div class="log-list-item" onclick="openLogModal('log-2')">
+                <div class="log-title-group">
+                    <span class="log-tag">EP.02</span>
+                    <span class="log-title">빗길 서킷과 피트스탑 대화</span>
                 </div>
-                <div class="log-body">
-                    <p class="action">피트 스탑의 열기와 빗소리가 뒤섞이는 서킷. 나인은 헬멧 바이저를 올리며 초이를 바라보았다.</p>
-                    <div class="dialogue">
-                        <span class="en">"Is that all you've got for me today?"</span>
-                        <span class="ko">(오늘 나한테 해줄 말이 그게 전부야?)</span>
-                    </div>
-                </div>
+                <span class="log-date">05.01</span>
             </div>
         </section>
 
@@ -519,6 +544,20 @@
     </footer>
 </div>
 
+<!-- 💬 [LOG 팝업 스크롤 모달] -->
+<div id="log-modal" class="log-modal-overlay" onclick="closeLogModal()">
+    <div class="log-modal-box" onclick="event.stopPropagation()">
+        <div class="log-modal-header">
+            <span class="title" id="log-modal-title">LOG TITLE</span>
+            <span class="close-btn" onclick="closeLogModal()">[X]</span>
+        </div>
+        <!-- 내부 스크롤 가능한 본문 영역 -->
+        <div class="log-modal-content" id="log-modal-body">
+            <!-- 자바스크립트로 내역 삽입됨 -->
+        </div>
+    </div>
+</div>
+
 <!-- 🖼️ 갤러리 이미지 확대 모달 -->
 <div id="gallery-modal" class="modal-overlay" onclick="closeGalleryModal()">
     <div class="modal-box" onclick="event.stopPropagation()">
@@ -533,8 +572,33 @@
     </div>
 </div>
 
+<!-- 📜 로그 텍스트 데이터 보관소 -->
+<template id="log-1">
+    <p class="action">나인의 눈이 동그랗게 커졌다. 이니셜, 그리고 형편없는 그림. 다이어리에 그렸던 동그라미와 선으로 된 바로 그 그림이라니. 그는 기억했다. 그녀가 자신을 길쭉한 막대기로, 스스로를 동그란 점으로 표현했던 그 단순하지만 다정한 그림을. 그 그림이 얼마나 큰 위로와 웃음을 주었는지, 그녀는 알까. 그는 고개를 끄덕였다. 그 어떤 정교한 초상화보다, 그들이 함께 새길 그 삐뚤빼뚤한 막대기 그림이 훨씬 더 가치 있을 터였다. 손을 다칠까 걱정하는 다정한 목소리, 그리고 날짜를 새기자는 제안까지. 나인은...</p>
+
+    <div class="dialogue">
+        <span class="en">"Yeah. Initials, the date... and our shitty stick-figure portrait. It's the best drawing I've ever seen."</span>
+        <span class="ko">(응. 이니셜, 날짜... 그리고 우리의 이 형편없는 막대기 초상화. 내가 본 그림 중에 최고야.)</span>
+    </div>
+
+    <p class="action">나인은 작게 웃으며 나이프 끝으로 고목의 표면을 조심스럽게 다듬기 시작했다. 그는 먼저 오늘 날짜를 새겼다. 05.03.2026.</p>
+
+    <div class="dialogue">
+        <span class="en">"2100... Yeah. I want to see it. With you."</span>
+        <span class="ko">(2100년... 응. 보고 싶어. 너랑 같이.)</span>
+    </div>
+</template>
+
+<template id="log-2">
+    <p class="action">피트 스탑의 열기와 빗소리가 뒤섞이는 서킷. 나인은 헬멧 바이저를 올리며 초이를 바라보았다.</p>
+    <div class="dialogue">
+        <span class="en">"Is that all you've got for me today?"</span>
+        <span class="ko">(오늘 나한테 해줄 말이 그게 전부야?)</span>
+    </div>
+</template>
+
 <script>
-    // 카테고리 전환
+    // 페이지 전환
     function switchPage(pageId, navElem) {
         document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
@@ -544,13 +608,30 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 로그 아코디언 토글 (접기/펴기)
-    function toggleLog(headerElem) {
-        const item = headerElem.parentElement;
-        item.classList.toggle('open');
+    // 📜 로그 팝업 모달 열기/닫기
+    function openLogModal(logId) {
+        const template = document.getElementById(logId);
+        if (!template) return;
+
+        // 제목 매핑
+        const titles = {
+            'log-1': '[EP.01] 2100년의 약속과 타임캡슐',
+            'log-2': '[EP.02] 빗길 서킷과 피트스탑 대화'
+        };
+
+        document.getElementById('log-modal-title').innerText = titles[logId] || 'LOG DETAIL';
+        document.getElementById('log-modal-body').innerHTML = template.innerHTML;
+        document.getElementById('log-modal').style.display = 'flex';
+        
+        // 팝업 열릴 때 내부 스크롤 상단으로 초기화
+        document.getElementById('log-modal-body').scrollTop = 0;
     }
 
-    // 갤러리 모달 열기/닫기
+    function closeLogModal() {
+        document.getElementById('log-modal').style.display = 'none';
+    }
+
+    // 🖼️ 갤러리 모달
     function openGalleryModal(title, caption) {
         document.getElementById('modal-img-title').innerText = title;
         document.getElementById('modal-img-caption').innerText = caption;
@@ -560,7 +641,7 @@
         document.getElementById('gallery-modal').style.display = 'none';
     }
 
-    // 방명록
+    // ✏️ 방명록
     function addGuestMsg() {
         const txt = document.getElementById('guest-text').value.trim();
         if(!txt) return;
