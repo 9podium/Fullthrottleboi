@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>9c3 :: FULL THROTTLE</title>
+    <title>9c3 :: LOG ARCHIVE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');
 
         :root {
             --main-pink: #ff8fa3;
             --light-pink: #fff0f3;
             --border-black: #111111;
-            --bg-gray: #f8f9fa;
+            --text-dark: #222222;
+            --bg-gray: #f4f4f5;
         }
 
         * {
@@ -31,250 +32,91 @@
             background-size: 16px 16px, 8px 8px;
             background-position: 0 0, 4px 4px;
             font-family: 'Noto Sans KR', sans-serif;
-            color: #111;
+            color: var(--text-dark);
             display: flex;
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            padding: 24px 12px;
+            padding: 20px 12px;
         }
 
-        /* 메인 프레임 */
-        .site-wrapper {
+        /* 메인 컨테이너 */
+        .archive-wrapper {
             width: 100%;
-            max-width: 600px;
+            max-width: 580px;
             background: #ffffff;
             border: 2px solid var(--border-black);
             border-radius: 16px;
             box-shadow: 6px 6px 0px var(--border-black);
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
         }
 
         /* Header */
-        .site-header {
+        .archive-header {
             border-bottom: 2px solid var(--border-black);
-            padding: 18px 15px 14px;
+            padding: 20px 16px 16px;
             text-align: center;
             background: #ffffff;
-            position: relative;
         }
         .header-tag {
             display: inline-block;
             font-family: 'VT323', monospace;
-            font-size: 12px;
+            font-size: 13px;
             letter-spacing: 1.5px;
             background: var(--light-pink);
             color: var(--main-pink);
             padding: 2px 10px;
             border-radius: 12px;
             border: 1px solid var(--main-pink);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
-        .pair-main-title {
+        .archive-title {
             font-family: 'VT323', monospace;
-            font-size: 30px;
+            font-size: 32px;
             font-weight: bold;
+            color: var(--border-black);
             letter-spacing: 1px;
-            color: var(--border-black);
-            text-transform: uppercase;
+        }
+        .archive-sub {
+            font-size: 11px;
+            color: #777;
+            margin-top: 4px;
         }
 
-        /* Nav */
-        .site-nav {
-            display: flex;
-            border-bottom: 2px solid var(--border-black);
-            background: #fff;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .site-nav::-webkit-scrollbar { display: none; }
-
-        .nav-item {
-            flex: 1;
-            min-width: 65px;
-            padding: 10px 0;
-            text-align: center;
-            font-family: 'VT323', monospace;
-            font-size: 15px;
-            border-right: 1px solid var(--border-black);
-            background: #fff;
-            color: #111;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.15s ease;
-        }
-        .nav-item:last-child { border-right: none; }
-        .nav-item:hover, .nav-item.active {
-            background: var(--main-pink);
-            color: #ffffff;
-        }
-
-        /* Body Main Content */
-        .site-body {
+        /* Feed List */
+        .feed-container {
             padding: 16px;
-            background: #ffffff;
-            min-height: 420px;
-        }
-
-        .page-content { display: none; }
-        .page-content.active { display: block; }
-
-        /* 🌸 [MAIN PAGE] */
-        .main-card {
-            border: 2px solid var(--border-black);
-            border-radius: 12px;
-            padding: 16px;
-            background: var(--light-pink);
-            box-shadow: 3px 3px 0px var(--border-black);
-            margin-bottom: 14px;
-            text-align: center;
-            position: relative;
-        }
-        .main-card .handle {
-            font-family: 'VT323', monospace;
-            font-size: 16px;
-            color: var(--main-pink);
-            font-weight: bold;
-        }
-        .main-intro-text {
-            font-size: 11px;
-            line-height: 1.6;
-            color: #333;
-            margin-top: 8px;
-            word-break: keep-all;
-        }
-
-        /* 💌 [PROFILE PAGE] */
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .profile-card {
-            border: 2px solid var(--border-black);
-            border-radius: 10px;
-            padding: 12px;
-            box-shadow: 3px 3px 0px var(--border-black);
-            background: #fff;
-        }
-        .profile-card.pink-accent {
-            background: var(--light-pink);
-        }
-        .profile-card h3 {
-            font-family: 'VT323', monospace;
-            font-size: 18px;
-            border-bottom: 1px solid var(--border-black);
-            padding-bottom: 4px;
-            margin-bottom: 8px;
-            color: var(--border-black);
-        }
-        .profile-card p {
-            font-size: 11px;
-            line-height: 1.5;
-            color: #444;
-        }
-
-        /* 📸 [LOG ARCHIVE] */
-        .log-list-item {
-            border: 2px solid var(--border-black);
-            border-radius: 10px;
-            margin-bottom: 10px;
-            box-shadow: 3px 3px 0px var(--border-black);
-            background: #fff;
-            padding: 12px 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.1s, background 0.15s;
-        }
-        .log-list-item:hover {
-            transform: translateY(-2px);
-            background: var(--light-pink);
-        }
-
-        .log-title-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            overflow: hidden;
-        }
-        .log-tag {
-            font-family: 'VT323';
-            font-size: 11px;
-            background: var(--main-pink);
-            color: #fff;
-            padding: 2px 6px;
-            border-radius: 4px;
-            flex-shrink: 0;
-        }
-        .log-title {
-            font-size: 12px;
-            font-weight: bold;
-            color: var(--border-black);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .log-date {
-            font-family: 'VT323';
-            font-size: 12px;
-            color: #888;
-            flex-shrink: 0;
-            margin-left: 6px;
-        }
-
-        /* 🐦 [X(TWITTER) STYLE LOG POPUP MODAL] */
-        .log-modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(2px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 20px 15px;
-        }
-        .log-modal-box {
-            background: #ffffff;
-            border: 2px solid var(--border-black);
-            border-radius: 16px;
-            width: 100%;
-            max-width: 500px;
-            max-height: 82vh;
             display: flex;
             flex-direction: column;
-            box-shadow: 6px 6px 0px var(--border-black);
-            overflow: hidden;
-            animation: modalUp 0.2s ease-out;
+            gap: 16px;
         }
 
-        @keyframes modalUp {
-            from { transform: translateY(12px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* 🐦 X 헤더 스타일 */
-        .log-modal-header {
-            padding: 12px 16px;
+        /* 📄 연성 카드 포스트 */
+        .post-card {
+            border: 2px solid var(--border-black);
+            border-radius: 12px;
             background: #ffffff;
-            border-bottom: 1px solid #eee;
+            box-shadow: 3px 3px 0px var(--border-black);
+            overflow: hidden;
+        }
+
+        /* 포스트 헤더 (프로필 느낌) */
+        .post-header {
+            padding: 12px 14px;
+            background: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-shrink: 0;
         }
-        .x-user-info {
+        .user-meta {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .x-avatar {
-            width: 34px;
-            height: 34px;
+        .avatar {
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: var(--light-pink);
             border: 1px solid var(--main-pink);
@@ -282,416 +124,179 @@
             align-items: center;
             justify-content: center;
             font-family: 'VT323';
-            font-size: 14px;
+            font-size: 13px;
             color: var(--main-pink);
             font-weight: bold;
         }
-        .x-names {
+        .user-names {
             display: flex;
             flex-direction: column;
         }
-        .x-nickname {
+        .nickname {
             font-size: 12px;
-            font-weight: bold;
-            color: #111;
-            line-height: 1.2;
-        }
-        .x-handle {
-            font-family: 'VT323', monospace;
-            font-size: 12px;
-            color: #777;
-        }
-        .close-btn {
-            font-family: 'VT323';
-            font-size: 18px;
-            cursor: pointer;
-            color: #999;
-        }
-        .close-btn:hover { color: var(--main-pink); }
-
-        /* 📜 트위터 본문 영역 */
-        .log-modal-content {
-            padding: 16px;
-            overflow-y: auto;
-            background: #ffffff;
-        }
-
-        /* 🩶 행동 지문 (차분한 온그레이 톤) */
-        .log-modal-content p.action {
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 11px;
-            line-height: 1.65;
-            color: #4a4a4a;
-            margin-bottom: 14px;
-            word-break: keep-all;
-            background: #f4f4f5;
-            padding: 12px 16px;
-            border-radius: 10px;
-            border-left: 3px solid #a1a1aa;
-            text-align: justify;
-        }
-
-        /* 💖 대사 영역: 트윗 캡처 카드 모티프 (핑크 도트 패턴 적용) */
-        .log-modal-content div.dialogue {
-            margin-bottom: 14px;
-            padding: 14px 16px;
-            border: 1px solid #ffccd5;
-            border-radius: 12px;
-            background-color: #fff0f3;
-            /* 캡처 이미지 배경처럼 연한 핑크 도트 레이어 */
-            background-image: radial-gradient(#ffc2d1 0.7px, transparent 0.7px);
-            background-size: 10px 10px;
-            text-align: justify;
-            box-shadow: 1px 1px 4px rgba(0,0,0,0.03);
-        }
-        .log-modal-content div.dialogue .en {
-            font-family: 'VT323', monospace;
-            font-size: 14px;
             font-weight: bold;
             color: var(--border-black);
-            display: block;
-            margin-bottom: 4px;
-            letter-spacing: 0.3px;
-            text-align: justify;
         }
-        .log-modal-content div.dialogue .ko {
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            color: #333;
-            line-height: 1.5;
-            word-break: keep-all;
-            text-align: justify;
-        }
-
-        /* 🐦 X 푸터 (좋아요/리트윗 아이콘 장식) */
-        .log-modal-footer {
-            padding: 10px 16px;
-            border-top: 1px solid #f0f0f0;
-            display: flex;
-            gap: 20px;
+        .handle {
+            font-family: 'VT323', monospace;
+            font-size: 12px;
             color: #888;
+        }
+        .post-date {
             font-family: 'VT323', monospace;
             font-size: 13px;
-            background: #fafafa;
-        }
-        .log-modal-footer span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* 🖼️ [GALLERY PAGE] */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-        }
-        .gallery-item {
-            border: 2px solid var(--border-black);
-            border-radius: 8px;
-            padding: 4px;
-            background: #fff;
-            cursor: pointer;
-            box-shadow: 2px 2px 0px var(--border-black);
-            text-align: center;
-            transition: transform 0.15s;
-        }
-        .gallery-item:hover { transform: scale(1.03); }
-        .gallery-thumb {
-            width: 100%;
-            height: 80px;
-            background: var(--light-pink);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'VT323';
-            font-size: 14px;
             color: var(--main-pink);
-            border-radius: 4px;
-            border: 1px dashed var(--main-pink);
-        }
-        .gallery-title {
-            font-size: 10px;
-            margin-top: 4px;
             font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
-        /* [GUESTBOOK PAGE] */
-        .guest-input-box {
-            border: 2px solid var(--border-black);
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 12px;
-            box-shadow: 3px 3px 0px var(--border-black);
-            background: #fff;
+        /* 연성 요약 타이틀 */
+        .post-title-area {
+            padding: 12px 14px 6px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--border-black);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .guest-input-box textarea {
-            width: 100%;
-            height: 55px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 6px 8px;
-            font-family: 'Noto Sans KR';
-            font-size: 11px;
-            resize: none;
-            outline: none;
-            margin-bottom: 6px;
-        }
-        .guest-submit-btn {
-            width: 100%;
-            padding: 6px;
+        .ep-badge {
+            font-family: 'VT323';
             background: var(--main-pink);
             color: #fff;
-            border: 1px solid var(--border-black);
-            border-radius: 6px;
-            font-family: 'VT323';
-            font-size: 14px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .guest-item {
-            border-bottom: 1px dashed #ccc;
-            padding: 8px 0;
-            font-size: 11px;
-        }
-        .guest-item .meta {
-            font-family: 'VT323';
-            color: var(--main-pink);
+            padding: 1px 6px;
+            border-radius: 4px;
             font-size: 11px;
         }
 
+        /* 📜 연성 본문 영역 (핵심: white-space: pre-line 적용) */
+        .post-content {
+            padding: 10px 14px 14px;
+        }
+
+        /* ✨ 행동 지문 (온그레이 톤 + 이탈릭 + 줄바꿈 완전 유지) */
+        .action-text {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-style: italic;
+            font-size: 11px;
+            line-height: 1.75;
+            color: #4b5563;
+            background: var(--bg-gray);
+            padding: 12px 14px;
+            border-radius: 8px;
+            border-left: 3px solid #9ca3af;
+            margin-bottom: 12px;
+            
+            /* 🔥 핵심: 엔터 줄바꿈을 그대로 반영하는 CSS */
+            white-space: pre-line;
+            text-align: justify;
+            word-break: keep-all;
+        }
+
+        /* ✨ 대사 박스 (분홍 도트 톤 + 세로 정렬 + 줄바꿈 유지) */
+        .dialogue-text {
+            background-color: var(--light-pink);
+            background-image: radial-gradient(#ffc2d1 0.7px, transparent 0.7px);
+            background-size: 10px 10px;
+            border: 1px solid #ffccd5;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            font-size: 11px;
+            line-height: 1.65;
+            color: #111;
+            font-weight: 600;
+            
+            /* 🔥 핵심: 엔터 줄바꿈을 그대로 반영하는 CSS */
+            white-space: pre-line;
+            text-align: justify;
+            word-break: keep-all;
+        }
+
+        /* 포스트 하단 트위터 장식 */
+        .post-footer {
+            padding: 8px 14px;
+            border-top: 1px solid #f5f5f5;
+            display: flex;
+            gap: 16px;
+            font-family: 'VT323', monospace;
+            font-size: 13px;
+            color: #999;
+            background: #fafafa;
+        }
+        .post-footer i { margin-right: 3px; }
+
         /* Footer */
-        .site-footer {
+        .archive-footer {
             border-top: 2px solid var(--border-black);
-            padding: 12px;
+            padding: 14px;
             text-align: center;
             font-family: 'VT323', monospace;
             font-size: 12px;
-            color: #777;
-            background: #fff;
+            color: #888;
+            background: #ffffff;
         }
     </style>
 </head>
 <body>
 
-<div class="site-wrapper">
+<div class="archive-wrapper">
     <!-- Header -->
-    <header class="site-header">
+    <header class="archive-header">
         <div class="header-tag">♥ @fullthrottleboi</div>
-        <h1 class="pair-main-title">9c3 ARCHIVE</h1>
+        <h1 class="archive-title">9c3 LOG BACKUP</h1>
+        <div class="archive-sub">나인 x 초이 연성 및 로그 백업 보관함</div>
     </header>
 
-    <!-- Nav -->
-    <nav class="site-nav">
-        <div class="nav-item active" onclick="switchPage('main', this)">MAIN</div>
-        <div class="nav-item" onclick="switchPage('profile', this)">PROFILE</div>
-        <div class="nav-item" onclick="switchPage('logs', this)">LOGS</div>
-        <div class="nav-item" onclick="switchPage('gallery', this)">GALLERY</div>
-        <div class="nav-item" onclick="switchPage('guest', this)">GUEST</div>
-    </nav>
+    <!-- Main Log Feed -->
+    <main class="feed-container">
 
-    <!-- Content Area -->
-    <main class="site-body">
-        
-        <!-- [MAIN PAGE] -->
-        <section id="page-main" class="page-content active">
-            <div class="main-card">
-                <div class="handle">@fullthrottleboi</div>
-                <div class="main-intro-text">
-                    <b>"My heart is your shape too, Choi."</b><br><br>
-                    연성 백업 및 썰 기록을 위한 개인 보관함입니다.<br>
-                    상단 메뉴를 통해 로그와 갤러리를 확인하실 수 있습니다.
+        <!-- 📌 [연성 포스트 1 - 캡처해주신 본문 예시] -->
+        <article class="post-card">
+            <div class="post-header">
+                <div class="user-meta">
+                    <div class="avatar">9c3</div>
+                    <div class="user-names">
+                        <span class="nickname">9c3</span>
+                        <span class="handle">@fullthrottleboi</span>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- [PROFILE PAGE] -->
-        <section id="page-profile" class="page-content">
-            <div class="profile-grid">
-                <div class="profile-card pink-accent">
-                    <h3>NICK BLACKWOOD</h3>
-                    <p><b>Role:</b> F1 Driver (#09)<br><b>Note:</b> 무뚝뚝하지만 초이 한정 다정함과 집착을 보임.</p>
-                </div>
-                <div class="profile-card">
-                    <h3>ON CHOI</h3>
-                    <p><b>Role:</b> Subject / Companion<br><b>Note:</b> 나인의 전담이자 그의 유일한 안식처.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 📸 [LOG ARCHIVE] -->
-        <section id="page-logs" class="page-content">
-            <div class="log-list-item" onclick="openLogModal('log-1')">
-                <div class="log-title-group">
-                    <span class="log-tag">EP.01</span>
-                    <span class="log-title">첫 사랑니</span>
-                </div>
-                <span class="log-date">05.03</span>
+                <span class="post-date">2026.05.03</span>
             </div>
 
-            <div class="log-list-item" onclick="openLogModal('log-2')">
-                <div class="log-title-group">
-                    <span class="log-tag">EP.02</span>
-                    <span class="log-title">빗길 서킷과 피트스탑 대화</span>
-                </div>
-                <span class="log-date">05.01</span>
+            <div class="post-title-area">
+                <span class="ep-badge">EP.01</span>
+                <span>고백과 서약</span>
             </div>
-        </section>
 
-        <!-- 🖼️ [GALLERY PAGE] -->
-        <section id="page-gallery" class="page-content">
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-thumb">♥ 01</div>
-                    <div class="gallery-title">Kiss_01.png</div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-thumb">♥ 02</div>
-                    <div class="gallery-title">Gas_Station.png</div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-thumb">♥ 03</div>
-                    <div class="gallery-title">Paddock.png</div>
-                </div>
-            </div>
-        </section>
+            <div class="post-content">
+                <!-- 행동 지문: 코드 안에서 엔터 친 그대로 줄바꿈 반영됨 -->
+                <div class="action-text">그의 목소리는 평소의 나른하고 장난기 어린 톤이 아니었다. 심하게 잠겨 있었고, 낯설 만큼 진지했다. 그는 초이의 눈을 피하지 않고, 그 깊은 초록색 바다에 잠겨들 듯 똑바로 응시하며 말했다. 영어 문장이 먼저, 아주 느리고 분명한 발음으로 그의 입에서 흘러나왔다. 그가 한 단어 한 단어를 뱉을 때마다, 휴게실의 공기가 성스럽게 물드는 것 같았다. 그의 고백은 단순히 소리를 내는 행위가 아니었다. 그의 심장을 꺼내어 그녀의 손에 직접 쥐여주는 것과 같은, 완전한 헌신이었다. 그는 잠시 숨을 골랐다. 이제는 더 어려운 관문이 남아있었다. 그의 모국어가 아닌, 그녀의 언어로. 그는 서툴지만 진심을 담아, 그의 인생에서 가장 중요한 단어들을 내뱉었다.</div>
 
-        <!-- [GUESTBOOK PAGE] -->
-        <section id="page-guest" class="page-content">
-            <div class="guest-input-box">
-                <textarea id="guest-text" placeholder="방명록을 남겨주세요..."></textarea>
-                <button class="guest-submit-btn" onclick="addGuestMsg()">SEND MESSAGE ♥</button>
+                <!-- 대사: 엔터 친 그대로 세로 정렬 및 단락 반영 -->
+                <div class="dialogue-text">I love you.
+(사랑해.)
+
+...사랑해, 초이.</div>
+
+                <div class="action-text">그 말을 내뱉는 순간, 나인은 마치 거대한 댐이 무너지는 듯한 해방감을 느껴다. 수십 년간 굳게 닫혀 있던 그의 마음의 문이, 그녀로 인해 활짝 열려버렸다. 그는 다시 한번 그녀를 품에 와락 끌어안았다. 이번에는 아까보다 더 힘주어, 그녀가 부서지기라도 할 것처럼 세계 안았다. 그는 그녀의 어깨에 얼굴을 묻고, 벅차오르는 감정을 주체하지 못한 채 가쁜 숨을 몰아쉬었다. 웃음이 나는 것 같기도 하고, 눈물이 날 것 같기도 한 이상한 기분이었다. 그는 자신의 심장이 이제 온전히 그녀의 것이 되었음을, 그리고 다시는 되찾을 수 없음을 깨달았다. 그는 그녀의 귓가에, 거의 울먹이는 듯한 목소리로 다시 한번 속삭였다. 그것은 그의 영혼이 내지르는 기쁨의 외침이었다.
+
+그는 자신의 인생이 이토록 완벽하게 느껴진 적이 없었다고 생각했다. 레이스에서 우승했을 때의 환희도, 챔피언이 되었을 때의 성취감도 지금 이 순간의 충만함에는 비할 바가 아니었다. 그는 그저 사랑하는 여자를 품에 안고, 그녀에게 사랑을 고백하고 있었다. 그것만으로도 그의 세상은 완벽했다. 그는 초이의 등을 부드럽게 쓸어내리며, 그녀의 작은 몸이 제 품 안에서 안정적으로 자리 잡는 것을 느꼈다. 이제 더 이상 숨길 것도, 두려워할 것도 없었다. 그는 그녀에게 자신의 모든 것을 주었다. 그리고 그녀 또한, 그에게 자신의 모든 것을 내어주었다. 두 사람은 그렇게 하나의 세계가 되어, 끝없는 어둠 속에서 서로의 유일한 빛이 되어주고 있었다. 그는 이 평화가, 이 행복이 영원히 계속되기를 기도했다. 아니, 기도가 아니었다. 그는 그렇게 만들 것이었다. 자신의 모든 것을 걸고서라도.</div>
             </div>
-            <div id="guest-list">
-                <div class="guest-item">
-                    <div class="meta">VISITOR // 2026.05.04</div>
-                    <div>나인과 초이 평생 행복해라! 갠홈 분위기 최고예요.</div>
-                </div>
+
+            <div class="post-footer">
+                <span><i class="fa-regular fa-comment"></i> 1</span>
+                <span><i class="fa-solid fa-retweet"></i> 12</span>
+                <span><i class="fa-solid fa-heart" style="color:var(--main-pink);"></i> 99</span>
             </div>
-        </section>
+        </article>
 
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
+    <footer class="archive-footer">
         © 2026 9c3 ARCHIVE. ALL RIGHTS RESERVED.
     </footer>
 </div>
 
-<!-- 💬 [X(트위터) 스타일 LOG POPUP MODAL] -->
-<div id="log-modal" class="log-modal-overlay" onclick="closeLogModal()">
-    <div class="log-modal-box" onclick="event.stopPropagation()">
-        
-        <!-- 🐦 X 프로필 헤더 -->
-        <div class="log-modal-header">
-            <div class="x-user-info">
-                <div class="x-avatar">9c3</div>
-                <div class="x-names">
-                    <span class="x-nickname">9c3</span>
-                    <span class="x-handle">@fullthrottleboi</span>
-                </div>
-            </div>
-            <span class="close-btn" onclick="closeLogModal()">✕</span>
-        </div>
-
-        <!-- 📜 본문 스크롤 영역 -->
-        <div class="log-modal-content" id="log-modal-body">
-            <!-- 자바스크립트로 내역 삽입됨 -->
-        </div>
-
-        <!-- 🐦 X 아이콘 푸터 장식 -->
-        <div class="log-modal-footer">
-            <span><i class="fa-regular fa-comment"></i> 1</span>
-            <span><i class="fa-solid fa-retweet"></i> 9</span>
-            <span><i class="fa-solid fa-heart" style="color:var(--main-pink);"></i> 73</span>
-            <span><i class="fa-regular fa-bookmark"></i></span>
-        </div>
-
-    </div>
-</div>
-
-<!-- 📜 로그 텍스트 데이터 보관소 -->
-<template id="log-1">
-    <p class="action">나인은 초이를 끌어안은 팔에 저도 모르게 힘이 들어가는 것을 느꼈다. 그는 지금 자신이 어떤 표정을 짓고 있는지 알 수 없었다. 그저 눈앞의 초록색 눈동자에 비친 제 모습이 낯설게만 느껴졌다. 그는 평생을 제멋대로 살아왔다. 지루한 것은 내던졌고 흥미로운 것은 잠시 취했다. 사람의 마음을 얻는 것도, 그 마음이 식어 떠나가는 것을 보는 것도 그에게는 그저 반복되는 유희에 불과했다. 하지만 지금, 그의 품에 안겨 사랑을 고백하는 이 작은 존재는 그 모든 법칙을 무너뜨리고 있었다. 그의 세계를 송두리째 뒤흔들고 있었다. 그녀의 고백은 그가 쌓아온 모든 방어벽을 단숨에 허물고, 그의 가장 연약하고 깊은 곳을 가차 없이 파고들었다. 그는 이 감정의 무게를, 이 벅찬 행복을 어떻게 감당해야 할지 몰랐다. 그는 그녀의 뺨을 감싸 쥔 손을 떨지 않으려고 안간힘을 썼지만, 미세한 떨림까지는 숨길 수가 없었다.
-초이의 맑은 눈동자는 흔들림 없이 그를 담고 있었다. 그 순수한 신뢰와 애정 앞에서, 나인은 자신이 한없이 작아지는 것을 느꼈다. 그는 그동안 수많은 사람들을 만났지만 단 한 번도 이런 감정을 느껴본 적이 없었다. 누군가를 지키고 싶다는 열망, 이 사람 없이는 안 될 것 같다는 절박함, 그리고 심장이 터져버릴 것 같은 이 충만한 행복감. 그는 입술을 달싹였지만 어떤 말도 나오지 않았다. 고맙다는 말도, 나도 그렇다는 말도, 이 순간 그녀에게 전하고 싶은 이 거대한 감정을 담기에는 턱없이 부족했다. 그는 그저 그녀의 이름을, 닉이라고 불러준 그 다정한 목소리를 되뇌었다. 그녀만이 부를 수 있는, 그녀에게만 허락된 그 이름. 그 이름에 실린 무게가 새삼스럽게 심장을 짓눌렀다. 이것은 게임이 아니다. 이것은 하룻밤의 유희도, 호기심도 아니다. 이것은 진짜였다.
-나인은 말없이 초이를 더 깊이 끌어안았다. 그녀의 작은 머리가 그의 어깨에 폭 기대어 왔다. 그는 그녀의 머리카락에 얼굴을 묻고, 익숙하고도 포근한 향기를 깊게 들이마셨다. 그것만이 지금 그가 할 수 있는 유일한 행동이었다. 마치 폭풍우 속에서 유일한 등대를 발견한 항해사처럼, 그는 그녀를 붙잡았다. 그녀의 존재 자체가 그에게는 구원이었다. 그는 눈을 감았다. 머릿속에는 그녀와 함께했던 짧고도 강렬한 시간들이 스쳐 지나갔다. 처음 그녀를 발견했을 때의 호기심, 그녀의 엉뚱함에 터져 나왔던 웃음, 그녀를 품에 안았을 때의 안도감, 그리고 그녀가 제 이름을 불러주었을 때의 전율. 그 모든 순간들이 모여 지금의 이 감정을 만들었다. 그는 이제 인정해야만 했다. 이 작은 여자가, 그의 세상 전부를 바꿔놓았다는 것을.
-</p>
-
-    <div class="dialogue">
-        <span class="ko">"닉, 너도 사랑한다고 말해 줘."</span>
-    </div>
-
-    <p class="action">사랑한다고, 말해달라고. 그에게는 너무나도 낯설고 어려운 요구였다. 그는 천천히 고개를 들었다. 초롱초롱한 눈으로 자신을 올려다보는 초록색 눈동자와 마주쳤다. 그 안에는 어떠한 의심도, 불안도 없었다. 그저 순수한 기대감과, 사랑받고 싶은 아이 같은 열망만이 가득했다. 말 안 하면 모른다니. 이렇게 심장이 터질 것 같은데. 내 모든 것이 너를 향해 비명을 지르고 있는데, 그걸 모를 수가 있나. 그는 속으로 투덜거렸지만, 차마 입 밖으로 내지는 못했다. 그녀의 저 맑은 눈을 보고 있자니, 어떠한 변명도, 어떠한 회피도 불가능했다. 그는 평생을 ‘사랑’이라는 단어를 입에 담지 않고 살아왔다. 그것은 그에게 불필요하고, 거추장스러운 감정의 표현 방식일 뿐이었다. 행동으로 보이면 충분하다고, 진심은 말없이도 전해지는 법이라고 믿었다. 하지만 지금 그의 앞에 있는 이 작은 여자는, 그 모든 신념을 무너뜨리고 있었다. 그녀는 말이 필요했다. 그의 목소리로 직접 듣기를 원했다.
-나인은 마른 입술을 혀로 축였다. 목구멍이 바싹 타들어 가는 것 같았다. 그깟 말 한마디 하는 것이 뭐가 그리 어렵다고. 하지만 그의 혀는 마치 납덩이라도 매달린 것처럼 무겁게 가라앉았다. 수많은 기자들 앞에서 오만한 선언을 내뱉고, 라이벌들에게 거침없이 독설을 날리던 그의 모습은 온데간데없었다. 그는 지금, 사랑하는 여자 앞에서 고작 세 글자를 말하지 못해 안절부절못하는 어린애와 같았다. 그는 초이의 뺨을 감싸 쥔 손에 힘을 주었다. 그녀의 부드러운 살결이, 따뜻한 체온이 그의 떨리는 손바닥으로 전해져 왔다. 그는 깊게 숨을 들이마셨다. 그녀의 향기가 폐부 깊숙이 스며들며, 경직되었던 몸과 마음을 조금씩 녹여주었다. 그래, 그녀가 원한다면. 그녀가 듣고 싶어 한다면. 못할 것도 없지. 그는 이 순간을 위해 평생을 기다려온 사람처럼, 아주 천천히, 그리고 신중하게 입을 열었다.
-그의 목소리는 평소의 나른하고 장난기 어린 톤이 아니었다. 심하게 잠겨 있었고, 낯설 만큼 진지했다. 그는 초이의 눈을 피하지 않고, 그 깊은 초록색 바다에 잠겨들 듯 똑바로 응시하며 말했다. 영어 문장이 먼저, 아주 느리고 분명한 발음으로 그의 입에서 흘러나왔다. 그가 한 단어 한 단어를 뱉을 때마다, 휴게실의 공기가 성스럽게 물드는 것 같았다. 그의 고백은 단순히 소리를 내는 행위가 아니었다. 그의 심장을 꺼내어 그녀의 손에 직접 쥐여주는 것과 같은, 완전한 헌신이었다. 그는 잠시 숨을 골랐다. 이제는 더 어려운 관문이 남아있었다. 그의 모국어가 아닌, 그녀의 언어로. 그는 서툴지만 진심을 담아, 그의 인생에서 가장 중요한 단어들을 내뱉었다.</p>
-
-    <div class="dialogue">
-        <span class="en">"I love you."</span>
-        <span class="ko">(사랑해.)</span>
-        
-        <span class="ko">"...사랑해, 초이."</span>
-    </div>
-
-    <p class="action">그 말을 내뱉는 순간, 나인은 마치 거대한 댐이 무너지는 듯한 해방감을 느꼈다. 수십 년간 굳게 닫혀 있던 그의 마음의 문이, 그녀로 인해 활짝 열려버렸다. 그는 다시 한번 그녀를 품에 와락 끌어안았다. 이번에는 아까보다 더 힘주어, 그녀가 부서지기라도 할 것처럼 세게 안았다. 그는 그녀의 어깨에 얼굴을 묻고, 벅차오르는 감정을 주체하지 못한 채 가쁜 숨을 몰아쉬었다. 웃음이 나는 것 같기도 하고, 눈물이 날 것 같기도 한 이상한 기분이었다. 그는 자신의 심장이 이제 온전히 그녀의 것이 되었음을, 그리고 다시는 되찾을 수 없음을 깨달았다. 그는 그녀의 귓가에 다시 한번 속삭였다. 그것은 그의 영혼이 내지르는 기쁨의 속삭임이었다.
-그는 자신의 인생이 이토록 완벽하게 느껴진 적이 없었다고 생각했다. 레이스에서 우승했을 때의 환희도, 챔피언이 되었을 때의 성취감도 지금 이 순간의 충만함에는 비할 바가 아니었다. 그는 그저 사랑하는 여자를 품에 안고, 그녀에게 사랑을 고백하고 있었다. 그것만으로도 그의 세상은 완벽했다. 그는 초이의 등을 부드럽게 쓸어내리며, 그녀의 작은 몸이 제 품 안에서 안정적으로 자리 잡는 것을 느꼈다. 이제 더 이상 숨길 것도, 두려워할 것도 없었다. 그는 그녀에게 자신의 모든 것을 주었다. 그리고 그녀 또한, 그에게 자신의 모든 것을 내어주었다. 두 사람은 그렇게 하나의 세계가 되어, 끝없는 어둠 속에서 서로의 유일한 빛이 되어주고 있었다. 그는 이 평화가, 이 행복이 영원히 계속되기를 기도했다. 아니, 기도가 아니었다. 그는 그렇게 만들 것이었다. 자신의 모든 것을 걸고서라도.</p>
-</template>
-
-<template id="log-2">
-    <p class="action">피트 스탑의 열기와 빗소리가 뒤섞이는 서킷. 나인은 헬멧 바이저를 올리며 초이를 바라보았다.</p>
-    <div class="dialogue">
-        <span class="en">"Is that all you've got for me today?"</span>
-        <span class="ko">(오늘 나한테 해줄 말이 그게 전부야?)</span>
-    </div>
-</template>
-
-<script>
-    // 페이지 전환
-    function switchPage(pageId, navElem) {
-        document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-
-        document.getElementById('page-' + pageId).classList.add('active');
-        navElem.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // 📜 로그 팝업 모달 열기/닫기
-    function openLogModal(logId) {
-        const template = document.getElementById(logId);
-        if (!template) return;
-
-        document.getElementById('log-modal-body').innerHTML = template.innerHTML;
-        document.getElementById('log-modal').style.display = 'flex';
-        
-        document.getElementById('log-modal-body').scrollTop = 0;
-    }
-
-    function closeLogModal() {
-        document.getElementById('log-modal').style.display = 'none';
-    }
-
-    // ✏️ 방명록
-    function addGuestMsg() {
-        const txt = document.getElementById('guest-text').value.trim();
-        if(!txt) return;
-
-        const guestList = document.getElementById('guest-list');
-        const newItem = document.createElement('div');
-        newItem.className = 'guest-item';
-        
-        const now = new Date();
-        const dateStr = now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0');
-
-        newItem.innerHTML = `<div class="meta">VISITOR // ${dateStr}</div><div>${txt}</div>`;
-        guestList.prepend(newItem);
-        document.getElementById('guest-text').value = '';
-    }
-</script>
-
 </body>
 </html>
-
