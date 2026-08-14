@@ -6,7 +6,7 @@
     <title>NICK & CHOI :: MONO ARCHIVE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Nanum+Myeongjo:ital,wght@1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
         * {
             box-sizing: border-box;
@@ -111,7 +111,7 @@
             box-shadow: 3px 3px 0px #000;
         }
         .main-intro-text {
-            font-size: 12px;
+            font-size: 11px;
             line-height: 1.6;
             border: 1px solid #000;
             padding: 10px;
@@ -164,7 +164,7 @@
             margin-bottom: 8px;
             box-shadow: 2px 2px 0px #000;
             background: #fff;
-            padding: 12px;
+            padding: 10px 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -198,7 +198,7 @@
             flex-shrink: 0;
         }
         .log-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             white-space: nowrap;
             overflow: hidden;
@@ -251,7 +251,7 @@
             flex-shrink: 0;
         }
         .log-modal-header .title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
         }
         .log-modal-header .close-btn {
@@ -263,48 +263,53 @@
         }
         .log-modal-header .close-btn:hover { color: #ff5555; }
 
+        /* 📜 로그 본문 영역 (양끝정렬 + 글자 크기 축소) */
         .log-modal-content {
-            padding: 18px 16px;
+            padding: 16px 14px;
             overflow-y: auto;
-            font-size: 13px;
-            line-height: 1.7;
             background: #ffffff;
+            text-align: justify; /* ✨ 양끝정렬 */
         }
 
-        /* ✨ 행동 지문 폰트 수정: 대사 VT323 및 클래식 폰트 필에 맞춰 변경 */
+        /* ✨ 행동 지문: 한글 대사 폰트('Noto Sans KR')와 완전히 일치 + 이탈릭 + 크기 축소 */
         .log-modal-content p.action {
-            font-family: 'VT323', 'Nanum Myeongjo', serif; /* 대사의 모노스페이스/픽셀 감성과 매칭 */
+            font-family: 'Noto Sans KR', sans-serif;
             font-style: italic;
-            font-size: 14px;
-            letter-spacing: 0.3px;
-            color: #555555; /* 부드럽고 연한 톤 유지 */
-            margin-bottom: 16px;
+            font-size: 11px; /* 한국어 대사와 사이즈 일치 */
+            line-height: 1.6;
+            color: #666666; /* 연한 톤 유지 */
+            margin-bottom: 14px;
             word-break: keep-all;
             background: #f9f9f9;
             padding: 8px 10px;
             border-left: 2px solid #ccc;
+            text-align: justify; /* ✨ 양끝정렬 */
         }
 
-        /* ✨ 대사 폰트 */
+        /* ✨ 대사 영역 */
         .log-modal-content div.dialogue {
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             padding: 2px 0;
+            text-align: justify; /* ✨ 양끝정렬 */
         }
         .log-modal-content div.dialogue .en {
             font-family: 'VT323', monospace;
-            font-size: 17px;
+            font-size: 14px; /* 작게 축소 */
             font-weight: bold;
             color: #000;
             display: block;
             margin-bottom: 2px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
+            text-align: justify; /* ✨ 양끝정렬 */
         }
         .log-modal-content div.dialogue .ko {
-            font-size: 12px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 11px; /* 작게 축소 */
             font-weight: 700;
             color: #111;
             line-height: 1.5;
             word-break: keep-all;
+            text-align: justify; /* ✨ 양끝정렬 */
         }
 
         /* 🖼️ [GALLERY PAGE] */
