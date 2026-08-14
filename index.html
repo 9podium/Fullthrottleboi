@@ -6,7 +6,7 @@
     <title>NICK & CHOI :: MONO ARCHIVE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Nanum+Myeongjo:ital,wght@1,400&display=swap');
 
         * {
             box-sizing: border-box;
@@ -143,7 +143,7 @@
             color: #333;
         }
 
-        /* 📸 [LOG ARCHIVE - 목록 스타일] */
+        /* 📸 [LOG ARCHIVE] */
         .log-filter {
             display: flex;
             gap: 4px;
@@ -212,7 +212,7 @@
             margin-left: 6px;
         }
 
-        /* 💬 [LOG POPUP MODAL - 팝업 스크롤 창] */
+        /* 💬 [LOG POPUP MODAL] */
         .log-modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -228,7 +228,7 @@
             border: 2px solid #000;
             width: 100%;
             max-width: 520px;
-            max-height: 80vh; /* 화면 높이의 80%로 제한 */
+            max-height: 80vh;
             display: flex;
             flex-direction: column;
             box-shadow: 6px 6px 0px #000;
@@ -263,35 +263,36 @@
         }
         .log-modal-header .close-btn:hover { color: #ff5555; }
 
-        /* 📜 팝업 내부 스크롤 영역 */
         .log-modal-content {
             padding: 18px 16px;
-            overflow-y: auto; /* 내부 스크롤 바 생성 */
+            overflow-y: auto;
             font-size: 13px;
             line-height: 1.7;
             background: #ffffff;
         }
 
-        /* ✨ 행동 지문: 이탈릭체 유지, 대사 폰트 계열로 연하게 (color: #555) */
+        /* ✨ 행동 지문 폰트 수정: 대사 VT323 및 클래식 폰트 필에 맞춰 변경 */
         .log-modal-content p.action {
+            font-family: 'VT323', 'Nanum Myeongjo', serif; /* 대사의 모노스페이스/픽셀 감성과 매칭 */
             font-style: italic;
-            font-weight: 300;
-            color: #555555; /* 연한 톤 */
+            font-size: 14px;
+            letter-spacing: 0.3px;
+            color: #555555; /* 부드럽고 연한 톤 유지 */
             margin-bottom: 16px;
             word-break: keep-all;
-            background: #fcfcfc;
+            background: #f9f9f9;
             padding: 8px 10px;
-            border-left: 2px solid #bbb;
+            border-left: 2px solid #ccc;
         }
 
-        /* ✨ 대사: 굵고 선명하게 */
+        /* ✨ 대사 폰트 */
         .log-modal-content div.dialogue {
             margin-bottom: 16px;
             padding: 2px 0;
         }
         .log-modal-content div.dialogue .en {
             font-family: 'VT323', monospace;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: bold;
             color: #000;
             display: block;
@@ -341,7 +342,7 @@
             text-overflow: ellipsis;
         }
 
-        /* 이미지 갤러리 모달 */
+        /* 모달 */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -477,7 +478,7 @@
             </div>
         </section>
 
-        <!-- 📸 [LOG ARCHIVE - 팝업을 띄우는 목록 형태] -->
+        <!-- 📸 [LOG ARCHIVE] -->
         <section id="page-logs" class="page-content">
             <div class="log-filter">
                 <button class="filter-btn active">ALL</button>
@@ -485,7 +486,6 @@
                 <button class="filter-btn">AU / EXTRA</button>
             </div>
 
-            <!-- 로그 항목 1 (클릭 시 팝업 열림) -->
             <div class="log-list-item" onclick="openLogModal('log-1')">
                 <div class="log-title-group">
                     <span class="log-tag">EP.01</span>
@@ -494,7 +494,6 @@
                 <span class="log-date">05.03</span>
             </div>
 
-            <!-- 로그 항목 2 (클릭 시 팝업 열림) -->
             <div class="log-list-item" onclick="openLogModal('log-2')">
                 <div class="log-title-group">
                     <span class="log-tag">EP.02</span>
@@ -551,7 +550,6 @@
             <span class="title" id="log-modal-title">LOG TITLE</span>
             <span class="close-btn" onclick="closeLogModal()">[X]</span>
         </div>
-        <!-- 내부 스크롤 가능한 본문 영역 -->
         <div class="log-modal-content" id="log-modal-body">
             <!-- 자바스크립트로 내역 삽입됨 -->
         </div>
@@ -613,7 +611,6 @@
         const template = document.getElementById(logId);
         if (!template) return;
 
-        // 제목 매핑
         const titles = {
             'log-1': '[EP.01] 2100년의 약속과 타임캡슐',
             'log-2': '[EP.02] 빗길 서킷과 피트스탑 대화'
@@ -623,7 +620,6 @@
         document.getElementById('log-modal-body').innerHTML = template.innerHTML;
         document.getElementById('log-modal').style.display = 'flex';
         
-        // 팝업 열릴 때 내부 스크롤 상단으로 초기화
         document.getElementById('log-modal-body').scrollTop = 0;
     }
 
