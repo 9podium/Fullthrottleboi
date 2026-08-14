@@ -6,7 +6,7 @@
     <title>NICK & CHOI :: MONO ARCHIVE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
 
         * {
             box-sizing: border-box;
@@ -143,7 +143,7 @@
             color: #333;
         }
 
-        /* 📸 [LOG ARCHIVE - 아코디언 컴팩트 방식] */
+        /* 📸 [LOG ARCHIVE - 캡처에 특화된 감성 레이아웃] */
         .log-filter {
             display: flex;
             gap: 4px;
@@ -161,20 +161,21 @@
 
         .log-accordion-item {
             border: 1px solid #000;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
             box-shadow: 2px 2px 0px #000;
             background: #fff;
         }
 
-        /* 접혀있는 제목 줄 (컴팩트 헤더) */
+        /* 접혀있는 제목 줄 */
         .log-header {
-            padding: 8px 10px;
+            padding: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
             background: #fff;
             user-select: none;
+            border-bottom: 1px solid transparent;
         }
         .log-header:hover { background: #f0f0f0; }
 
@@ -189,7 +190,7 @@
             font-size: 11px;
             background: #000;
             color: #fff;
-            padding: 0 4px;
+            padding: 1px 5px;
             flex-shrink: 0;
         }
         .log-title {
@@ -207,48 +208,57 @@
             margin-left: 6px;
         }
 
-        /* 클릭 시 열리는 본문 영역 */
+        /* 열렸을 때 본문 디자인 (스크롤 제한 제거, 네모 박스 제거) */
         .log-body {
             display: none;
-            padding: 12px 10px 10px;
+            padding: 16px 14px;
             border-top: 1px dashed #000;
-            background: #fafafa;
-            font-size: 12px;
-            line-height: 1.6;
+            background: #ffffff;
+            font-size: 13px;
+            line-height: 1.7;
         }
         .log-accordion-item.open .log-body { display: block; }
-        .log-accordion-item.open .log-header { background: #000; color: #fff; }
+        .log-accordion-item.open .log-header { background: #000; color: #fff; border-bottom: 1px solid #000; }
         .log-accordion-item.open .log-tag { background: #fff; color: #000; }
         .log-accordion-item.open .log-date { color: #ccc; }
 
-        .log-body .action {
-            background: #fff;
-            border-left: 3px solid #000;
-            padding: 6px 8px;
-            margin-bottom: 8px;
-            color: #333;
+        /* ✨ 행동 지문: 기울기 적용 (Italic) */
+        .log-body p.action {
             font-style: italic;
+            color: #333;
+            margin-bottom: 14px;
             word-break: keep-all;
-        }
-        .log-body .dialogue {
-            border: 1px solid #000;
-            padding: 6px 8px;
-            margin-bottom: 6px;
-            background: #fff;
-            box-shadow: 1px 1px 0px #000;
-        }
-        .log-body .dialogue .speaker {
-            font-family: 'VT323', monospace;
-            font-size: 12px;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 1px;
+            background: #fafafa;
+            padding: 8px 10px;
+            border-left: 2px solid #000;
         }
 
-        /* 🖼️ [GALLERY PAGE - 컴팩트 그리드] */
+        /* ✨ 대사: 박스 없이 굵고 깔끔하게 */
+        .log-body div.dialogue {
+            margin-bottom: 14px;
+            padding: 2px 4px;
+        }
+        .log-body div.dialogue .en {
+            font-family: 'VT323', monospace;
+            font-size: 15px;
+            font-weight: bold;
+            color: #000;
+            display: block;
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+        }
+        .log-body div.dialogue .ko {
+            font-size: 12px;
+            font-weight: 700; /* 대사 한글 굵게 */
+            color: #111;
+            line-height: 1.5;
+            word-break: keep-all;
+        }
+
+        /* 🖼️ [GALLERY PAGE] */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3열로 촘촘하게 배열 */
+            grid-template-columns: repeat(3, 1fr);
             gap: 6px;
         }
         .gallery-item {
@@ -280,7 +290,7 @@
             text-overflow: ellipsis;
         }
 
-        /* 갤러리 팝업 모달 */
+        /* 갤러리 모달 */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -390,7 +400,7 @@
             <div class="main-banner">
                 <svg width="100%" height="100%" viewBox="0 0 400 140" preserveAspectRatio="none">
                     <rect width="400" height="140" fill="#f8f8f8"/>
-                    <path d="M0,0 L400,140 M400,0 L0,140" stroke="#e0e0e0" stroke-width="1"/>
+                    <path d="M0,0 L400,140 M400,0 L0,180" stroke="#e0e0e0" stroke-width="1"/>
                     <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="VT323" font-size="22" fill="#000">NICK x CHOI</text>
                     <text x="50%" y="62%" dominant-baseline="middle" text-anchor="middle" font-family="VT323" font-size="12" fill="#666">[ PADDOCK & DAILY BACKUP ]</text>
                 </svg>
@@ -416,7 +426,7 @@
             </div>
         </section>
 
-        <!-- 📸 [LOG ARCHIVE - 아코디언 구조] -->
+        <!-- 📸 [LOG ARCHIVE - 100% 원문 복원 & 박스 제거 깔끔한 디자인] -->
         <section id="page-logs" class="page-content">
             <div class="log-filter">
                 <button class="filter-btn active">ALL</button>
@@ -424,8 +434,8 @@
                 <button class="filter-btn">AU / EXTRA</button>
             </div>
 
-            <!-- 로그 아코디언 항목 1 -->
-            <div class="log-accordion-item">
+            <!-- [Log 01] 원본 전체 텍스트 100% 복원 -->
+            <div class="log-accordion-item open">
                 <div class="log-header" onclick="toggleLog(this)">
                     <div class="log-title-group">
                         <span class="log-tag">EP.01</span>
@@ -434,23 +444,23 @@
                     <span class="log-date">05.03</span>
                 </div>
                 <div class="log-body">
-                    <p class="action">나인의 눈이 동그랗게 커졌다. 이니셜, 그리고 형편없는 그림. 다이어리에 그렸던 동그라미와 선으로 된 바로 그 그림이라니. 그는 기억했다. 그녀가 자신을 길쭉한 막대기로, 스스로를 동그란 점으로 표현했던 그 단순하지만 다정한 그림을.</p>
+                    <p class="action">나인의 눈이 동그랗게 커졌다. 이니셜, 그리고 형편없는 그림. 다이어리에 그렸던 동그라미와 선으로 된 바로 그 그림이라니. 그는 기억했다. 그녀가 자신을 길쭉한 막대기로, 스스로를 동그란 점으로 표현했던 그 단순하지만 다정한 그림을. 그 그림이 얼마나 큰 위로와 웃음을 주었는지, 그녀는 알까. 그는 고개를 끄덕였다. 그 어떤 정교한 초상화보다, 그들이 함께 새길 그 삐뚤빼뚤한 막대기 그림이 훨씬 더 가치 있을 터였다. 손을 다칠까 걱정하는 다정한 목소리, 그리고 날짜를 새기자는 제안까지. 나인은...</p>
 
                     <div class="dialogue">
-                        <span class="speaker">NICK</span>
-                        <div class="text">"Yeah. Initials, the date... and our shitty stick-figure portrait. It's the best drawing I've ever seen."</div>
+                        <span class="en">"Yeah. Initials, the date... and our shitty stick-figure portrait. It's the best drawing I've ever seen."</span>
+                        <span class="ko">(응. 이니셜, 날짜... 그리고 우리의 이 형편없는 막대기 초상화. 내가 본 그림 중에 최고야.)</span>
                     </div>
 
                     <p class="action">나인은 작게 웃으며 나이프 끝으로 고목의 표면을 조심스럽게 다듬기 시작했다. 그는 먼저 오늘 날짜를 새겼다. 05.03.2026.</p>
 
                     <div class="dialogue">
-                        <span class="speaker">NICK</span>
-                        <div class="text">"2100... Yeah. I want to see it. With you."</div>
+                        <span class="en">"2100... Yeah. I want to see it. With you."</span>
+                        <span class="ko">(2100년... 응. 보고 싶어. 너랑 같이.)</span>
                     </div>
                 </div>
             </div>
 
-            <!-- 로그 아코디언 항목 2 -->
+            <!-- [Log 02] 원본 전체 텍스트 -->
             <div class="log-accordion-item">
                 <div class="log-header" onclick="toggleLog(this)">
                     <div class="log-title-group">
@@ -462,14 +472,14 @@
                 <div class="log-body">
                     <p class="action">피트 스탑의 열기와 빗소리가 뒤섞이는 서킷. 나인은 헬멧 바이저를 올리며 초이를 바라보았다.</p>
                     <div class="dialogue">
-                        <span class="speaker">NICK</span>
-                        <div class="text">"Is that all you've got for me today?"</div>
+                        <span class="en">"Is that all you've got for me today?"</span>
+                        <span class="ko">(오늘 나한테 해줄 말이 그게 전부야?)</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 🖼️ [GALLERY PAGE - 컴팩트 그리드 방식] -->
+        <!-- 🖼️ [GALLERY PAGE] -->
         <section id="page-gallery" class="page-content">
             <div class="gallery-grid">
                 <div class="gallery-item" onclick="openGalleryModal('Helmet_and_Kisses.png', '나인: 헬멧 벗겨줄 때까지 안 놓아줄 거야.')">
