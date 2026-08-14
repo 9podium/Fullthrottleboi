@@ -28,10 +28,10 @@
             padding: 20px 10px;
         }
 
-        /* 📱 프레임 컨테이너: 캡처했을 때 가장 예쁜 비율과 테두리 */
+        /* 메인 프레임 */
         .site-wrapper {
             width: 100%;
-            max-width: 640px; /* 모바일~태블릿 캡처에 가장 최적화된 너비 */
+            max-width: 640px;
             background: #ffffff;
             border: 2px solid #000000;
             box-shadow: 6px 6px 0px #000000;
@@ -40,32 +40,30 @@
             overflow: hidden;
         }
 
-        /* 1. 헤더 & 메인 비주얼 타이틀 */
+        /* Header */
         .site-header {
             border-bottom: 2px solid #000;
-            padding: 20px 15px 15px;
+            padding: 16px 15px 12px;
             text-align: center;
             background: #fff;
         }
-
         .pair-sub-title {
             font-family: 'VT323', monospace;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 2px;
             color: #666;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
-
         .pair-main-title {
             font-family: 'VT323', monospace;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             letter-spacing: 1px;
             line-height: 1.1;
             text-transform: uppercase;
         }
 
-        /* 2. 카테고리 네비게이션 바 */
+        /* Nav */
         .site-nav {
             display: flex;
             border-bottom: 2px solid #000;
@@ -77,16 +75,15 @@
 
         .nav-item {
             flex: 1;
-            min-width: 80px;
-            padding: 10px 0;
+            min-width: 70px;
+            padding: 9px 0;
             text-align: center;
             font-family: 'VT323', monospace;
-            font-size: 15px;
+            font-size: 14px;
             border-right: 1px solid #000;
             background: #fff;
             color: #000;
             cursor: pointer;
-            transition: all 0.15s ease;
             white-space: nowrap;
         }
         .nav-item:last-child { border-right: none; }
@@ -95,39 +92,29 @@
             color: #ffffff;
         }
 
-        /* 3. 콘텐츠 메인 영역 */
+        /* Main Content Body */
         .site-body {
-            padding: 16px;
+            padding: 14px;
             background: #fff;
-            min-height: 400px;
+            min-height: 420px;
         }
 
-        .page-content {
-            display: none;
-        }
-        .page-content.active {
-            display: block;
-        }
+        .page-content { display: none; }
+        .page-content.active { display: block; }
 
-        /* [MAIN / HOME PAGE] */
+        /* [MAIN PAGE] */
         .main-banner {
             border: 2px solid #000;
-            height: 180px;
+            height: 140px;
             background: #eee;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-            position: relative;
+            margin-bottom: 12px;
             box-shadow: 3px 3px 0px #000;
         }
-
         .main-intro-text {
-            font-size: 13px;
+            font-size: 12px;
             line-height: 1.6;
             border: 1px solid #000;
-            padding: 12px;
+            padding: 10px;
             background: #fafafa;
             word-break: keep-all;
         }
@@ -136,204 +123,257 @@
         .profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
         }
         .profile-card {
             border: 1px solid #000;
-            padding: 12px;
+            padding: 10px;
             box-shadow: 2px 2px 0px #000;
         }
         .profile-card h3 {
             font-family: 'VT323', monospace;
-            font-size: 18px;
+            font-size: 16px;
             border-bottom: 1px solid #000;
-            padding-bottom: 4px;
-            margin-bottom: 8px;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
         }
         .profile-card p {
-            font-size: 12px;
+            font-size: 11px;
             line-height: 1.5;
             color: #333;
         }
 
-        /* 📸 [LOG ARCHIVE PAGE - 캡처용 백업 로그 레이아웃] */
+        /* 📸 [LOG ARCHIVE - 아코디언 컴팩트 방식] */
         .log-filter {
             display: flex;
-            gap: 6px;
-            margin-bottom: 12px;
+            gap: 4px;
+            margin-bottom: 10px;
         }
         .filter-btn {
             font-family: 'VT323';
-            font-size: 13px;
-            padding: 3px 8px;
+            font-size: 12px;
+            padding: 2px 6px;
             border: 1px solid #000;
             background: #fff;
             cursor: pointer;
         }
         .filter-btn.active { background: #000; color: #fff; }
 
-        .log-card {
+        .log-accordion-item {
             border: 1px solid #000;
-            padding: 14px;
-            margin-bottom: 15px;
-            box-shadow: 3px 3px 0px #000;
+            margin-bottom: 6px;
+            box-shadow: 2px 2px 0px #000;
             background: #fff;
         }
-        .log-card-header {
-            border-bottom: 1px dashed #000;
-            padding-bottom: 8px;
-            margin-bottom: 10px;
+
+        /* 접혀있는 제목 줄 (컴팩트 헤더) */
+        .log-header {
+            padding: 8px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: #fff;
+            user-select: none;
+        }
+        .log-header:hover { background: #f0f0f0; }
+
+        .log-title-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow: hidden;
         }
         .log-tag {
-            display: inline-block;
             font-family: 'VT323';
             font-size: 11px;
             background: #000;
             color: #fff;
-            padding: 1px 5px;
-            margin-bottom: 4px;
+            padding: 0 4px;
+            flex-shrink: 0;
         }
-        .log-card-title {
-            font-size: 15px;
+        .log-title {
+            font-size: 13px;
             font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .log-card-date {
+        .log-date {
             font-family: 'VT323';
             font-size: 11px;
             color: #666;
+            flex-shrink: 0;
+            margin-left: 6px;
         }
 
-        /* 캡처 시 예쁘게 찍히는 대화형 본문 스타일 */
+        /* 클릭 시 열리는 본문 영역 */
         .log-body {
+            display: none;
+            padding: 12px 10px 10px;
+            border-top: 1px dashed #000;
+            background: #fafafa;
             font-size: 12px;
             line-height: 1.6;
         }
+        .log-accordion-item.open .log-body { display: block; }
+        .log-accordion-item.open .log-header { background: #000; color: #fff; }
+        .log-accordion-item.open .log-tag { background: #fff; color: #000; }
+        .log-accordion-item.open .log-date { color: #ccc; }
+
         .log-body .action {
-            background: #f7f7f7;
+            background: #fff;
             border-left: 3px solid #000;
-            padding: 8px;
-            margin-bottom: 10px;
+            padding: 6px 8px;
+            margin-bottom: 8px;
             color: #333;
             font-style: italic;
             word-break: keep-all;
         }
         .log-body .dialogue {
             border: 1px solid #000;
-            padding: 8px 10px;
-            margin-bottom: 8px;
-            box-shadow: 2px 2px 0px #000;
+            padding: 6px 8px;
+            margin-bottom: 6px;
             background: #fff;
+            box-shadow: 1px 1px 0px #000;
         }
         .log-body .dialogue .speaker {
             font-family: 'VT323', monospace;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             display: block;
-            margin-bottom: 2px;
-            border-bottom: 1px opacity 0.2;
-        }
-        .log-body .dialogue .text {
-            color: #222;
+            margin-bottom: 1px;
         }
 
-        /* 🖼️ [GALLERY PAGE] */
+        /* 🖼️ [GALLERY PAGE - 컴팩트 그리드] */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr); /* 3열로 촘촘하게 배열 */
+            gap: 6px;
         }
-        .gallery-box {
+        .gallery-item {
             border: 1px solid #000;
-            padding: 6px;
-            box-shadow: 2px 2px 0px #000;
+            padding: 3px;
             background: #fff;
+            cursor: pointer;
+            box-shadow: 1px 1px 0px #000;
             text-align: center;
         }
-        .gallery-img-placeholder {
+        .gallery-thumb {
             width: 100%;
-            height: 120px;
+            height: 75px;
             background: #eee;
-            border: 1px solid #ddd;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'VT323';
-            font-size: 14px;
-            color: #888;
+            font-size: 12px;
+            color: #777;
+            border: 1px solid #ddd;
         }
-        .gallery-caption {
-            font-size: 11px;
-            margin-top: 6px;
+        .gallery-title {
+            font-size: 10px;
+            margin-top: 3px;
             font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* 📟 [GUESTBOOK PAGE] */
+        /* 갤러리 팝업 모달 */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+        .modal-box {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 10px;
+            max-width: 90%;
+            width: 380px;
+            box-shadow: 5px 5px 0px #000;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #000;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+            font-family: 'VT323';
+            font-size: 14px;
+        }
+
+        /* [GUESTBOOK PAGE] */
         .guest-input-box {
             border: 1px solid #000;
-            padding: 10px;
-            margin-bottom: 12px;
+            padding: 8px;
+            margin-bottom: 10px;
             box-shadow: 2px 2px 0px #000;
         }
         .guest-input-box textarea {
             width: 100%;
-            height: 55px;
+            height: 50px;
             border: 1px solid #ccc;
             padding: 6px;
             font-family: 'Noto Sans KR';
-            font-size: 12px;
+            font-size: 11px;
             resize: none;
             outline: none;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         .guest-submit-btn {
             width: 100%;
-            padding: 6px;
+            padding: 4px;
             background: #000;
             color: #fff;
             border: none;
             font-family: 'VT323';
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
         }
         .guest-item {
             border-bottom: 1px dashed #000;
-            padding: 8px 0;
-            font-size: 12px;
+            padding: 6px 0;
+            font-size: 11px;
         }
         .guest-item .meta {
             font-family: 'VT323';
             color: #666;
-            font-size: 11px;
-            margin-bottom: 2px;
+            font-size: 10px;
         }
 
-        /* 4. 푸터 */
+        /* Footer */
         .site-footer {
             border-top: 2px solid #000;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
             font-family: 'VT323', monospace;
-            font-size: 12px;
+            font-size: 11px;
             color: #666;
             background: #fff;
         }
 
-        @media (max-width: 480px) {
-            .profile-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
+        @media (max-width: 400px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
 <div class="site-wrapper">
-    <!-- 1. 타이틀 헤더 -->
+    <!-- Header -->
     <header class="site-header">
         <div class="pair-sub-title">PRIVATE OC ARCHIVE</div>
         <h1 class="pair-main-title">NICK & CHOI</h1>
     </header>
 
-    <!-- 2. 카테고리 네비게이션 -->
+    <!-- Nav -->
     <nav class="site-nav">
         <div class="nav-item active" onclick="switchPage('main', this)">MAIN</div>
         <div class="nav-item" onclick="switchPage('profile', this)">PROFILE</div>
@@ -342,15 +382,15 @@
         <div class="nav-item" onclick="switchPage('guest', this)">GUEST</div>
     </nav>
 
-    <!-- 3. 메인 콘텐츠 영역 -->
+    <!-- Content Area -->
     <main class="site-body">
         
         <!-- [MAIN PAGE] -->
         <section id="page-main" class="page-content active">
             <div class="main-banner">
-                <svg width="100%" height="100%" viewBox="0 0 400 180" preserveAspectRatio="none">
-                    <rect width="400" height="180" fill="#f8f8f8"/>
-                    <path d="M0,0 L400,180 M400,0 L0,180" stroke="#e0e0e0" stroke-width="1"/>
+                <svg width="100%" height="100%" viewBox="0 0 400 140" preserveAspectRatio="none">
+                    <rect width="400" height="140" fill="#f8f8f8"/>
+                    <path d="M0,0 L400,140 M400,0 L0,140" stroke="#e0e0e0" stroke-width="1"/>
                     <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="VT323" font-size="22" fill="#000">NICK x CHOI</text>
                     <text x="50%" y="62%" dominant-baseline="middle" text-anchor="middle" font-family="VT323" font-size="12" fill="#666">[ PADDOCK & DAILY BACKUP ]</text>
                 </svg>
@@ -358,7 +398,7 @@
             <div class="main-intro-text">
                 <b>WELCOME.</b><br>
                 나인과 초이의 이야기, 연성 백업 및 서킷 기록을 위한 개인 보관함입니다.<br>
-                상단 카테고리를 통해 두 사람의 프로필과 백업된 연성 로그를 감상하실 수 있습니다.
+                상단 카테고리를 통해 프로필과 백업 로그를 감상하실 수 있습니다.
             </div>
         </section>
 
@@ -367,16 +407,16 @@
             <div class="profile-grid">
                 <div class="profile-card">
                     <h3>NICK BLACKWOOD</h3>
-                    <p><b>Age:</b> 20s<br><b>Role:</b> F1 Driver (#09)<br><b>Note:</b> 무뚝뚝하고 차가워 보이지만 초이 한정 다정함과 집착을 보임.</p>
+                    <p><b>Role:</b> F1 Driver (#09)<br><b>Note:</b> 무뚝뚝하지만 초이 한정 다정함과 집착을 보임.</p>
                 </div>
                 <div class="profile-card">
                     <h3>ON CHOI</h3>
-                    <p><b>Age:</b> 20s<br><b>Role:</b> Subject / Companion<br><b>Note:</b> 나인의 전담이자 그의 유일한 안식처.</p>
+                    <p><b>Role:</b> Subject / Companion<br><b>Note:</b> 나인의 전담이자 그의 유일한 안식처.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 📸 [LOG ARCHIVE PAGE - 캡처용 백업 로그] -->
+        <!-- 📸 [LOG ARCHIVE - 아코디언 구조] -->
         <section id="page-logs" class="page-content">
             <div class="log-filter">
                 <button class="filter-btn active">ALL</button>
@@ -384,12 +424,14 @@
                 <button class="filter-btn">AU / EXTRA</button>
             </div>
 
-            <!-- 백업 로그 카드 1 (캡처하면 바로 예쁜 스크린샷 연성) -->
-            <div class="log-card">
-                <div class="log-card-header">
-                    <span class="log-tag">EP.01</span>
-                    <div class="log-card-title">2100년의 약속과 타임캡슐</div>
-                    <div class="log-card-date">DATE: 2026.05.03 | CHARACTERS: Nick & Choi</div>
+            <!-- 로그 아코디언 항목 1 -->
+            <div class="log-accordion-item">
+                <div class="log-header" onclick="toggleLog(this)">
+                    <div class="log-title-group">
+                        <span class="log-tag">EP.01</span>
+                        <span class="log-title">2100년의 약속과 타임캡슐</span>
+                    </div>
+                    <span class="log-date">05.03</span>
                 </div>
                 <div class="log-body">
                     <p class="action">나인의 눈이 동그랗게 커졌다. 이니셜, 그리고 형편없는 그림. 다이어리에 그렸던 동그라미와 선으로 된 바로 그 그림이라니. 그는 기억했다. 그녀가 자신을 길쭉한 막대기로, 스스로를 동그란 점으로 표현했던 그 단순하지만 다정한 그림을.</p>
@@ -408,12 +450,14 @@
                 </div>
             </div>
 
-            <!-- 백업 로그 카드 2 -->
-            <div class="log-card">
-                <div class="log-card-header">
-                    <span class="log-tag">EP.02</span>
-                    <div class="log-card-title">빗길 서킷과 피트스탑 대화</div>
-                    <div class="log-card-date">DATE: 2026.05.01 | CHARACTERS: Nick & Choi</div>
+            <!-- 로그 아코디언 항목 2 -->
+            <div class="log-accordion-item">
+                <div class="log-header" onclick="toggleLog(this)">
+                    <div class="log-title-group">
+                        <span class="log-tag">EP.02</span>
+                        <span class="log-title">빗길 서킷과 피트스탑 대화</span>
+                    </div>
+                    <span class="log-date">05.01</span>
                 </div>
                 <div class="log-body">
                     <p class="action">피트 스탑의 열기와 빗소리가 뒤섞이는 서킷. 나인은 헬멧 바이저를 올리며 초이를 바라보았다.</p>
@@ -425,16 +469,20 @@
             </div>
         </section>
 
-        <!-- [GALLERY PAGE] -->
+        <!-- 🖼️ [GALLERY PAGE - 컴팩트 그리드 방식] -->
         <section id="page-gallery" class="page-content">
             <div class="gallery-grid">
-                <div class="gallery-box">
-                    <div class="gallery-img-placeholder">IMAGE 01</div>
-                    <div class="gallery-caption">Helmet_and_Kisses.png</div>
+                <div class="gallery-item" onclick="openGalleryModal('Helmet_and_Kisses.png', '나인: 헬멧 벗겨줄 때까지 안 놓아줄 거야.')">
+                    <div class="gallery-thumb">IMG 01</div>
+                    <div class="gallery-title">Kiss_01.png</div>
                 </div>
-                <div class="gallery-box">
-                    <div class="gallery-img-placeholder">IMAGE 02</div>
-                    <div class="gallery-caption">Gas_Station_Night.png</div>
+                <div class="gallery-item" onclick="openGalleryModal('Gas_Station_Night.png', '고급유 채우는 동안 초이가 사준 커피 마시는 중.')">
+                    <div class="gallery-thumb">IMG 02</div>
+                    <div class="gallery-title">Gas_Station.png</div>
+                </div>
+                <div class="gallery-item" onclick="openGalleryModal('Circuit_Paddock.png', '경기 시작 10분 전 피트 안에서.')">
+                    <div class="gallery-thumb">IMG 03</div>
+                    <div class="gallery-title">Paddock.png</div>
                 </div>
             </div>
         </section>
@@ -455,33 +503,54 @@
 
     </main>
 
-    <!-- 4. 푸터 -->
+    <!-- Footer -->
     <footer class="site-footer">
         © 2026 NICK & CHOI. ALL RIGHTS RESERVED.
     </footer>
 </div>
 
-<script>
-    // 카테고리 페이지 전환 함수
-    function switchPage(pageId, navElem) {
-        // 모든 페이지 숨기기
-        document.querySelectorAll('.page-content').forEach(page => {
-            page.classList.remove('active');
-        });
-        // 모든 네비 버튼 활성화 해제
-        document.querySelectorAll('.nav-item').forEach(nav => {
-            nav.classList.remove('active');
-        });
+<!-- 🖼️ 갤러리 이미지 확대 모달 -->
+<div id="gallery-modal" class="modal-overlay" onclick="closeGalleryModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <span id="modal-img-title">IMAGE_PREVIEW</span>
+            <span style="cursor:pointer;" onclick="closeGalleryModal()">[X]</span>
+        </div>
+        <div style="width:100%; height:180px; background:#111; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'VT323'; margin-bottom:8px;">
+            IMAGE VIEW
+        </div>
+        <p id="modal-img-caption" style="font-size:11px; color:#333; line-height:1.4; border:1px dashed #000; padding:6px; background:#f9f9f9;"></p>
+    </div>
+</div>
 
-        // 선택된 페이지 및 네비 버튼 활성화
+<script>
+    // 카테고리 전환
+    function switchPage(pageId, navElem) {
+        document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+
         document.getElementById('page-' + pageId).classList.add('active');
         navElem.classList.add('active');
-
-        // 스크롤 상단으로 이동
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 방명록 작성
+    // 로그 아코디언 토글 (접기/펴기)
+    function toggleLog(headerElem) {
+        const item = headerElem.parentElement;
+        item.classList.toggle('open');
+    }
+
+    // 갤러리 모달 열기/닫기
+    function openGalleryModal(title, caption) {
+        document.getElementById('modal-img-title').innerText = title;
+        document.getElementById('modal-img-caption').innerText = caption;
+        document.getElementById('gallery-modal').style.display = 'flex';
+    }
+    function closeGalleryModal() {
+        document.getElementById('gallery-modal').style.display = 'none';
+    }
+
+    // 방명록
     function addGuestMsg() {
         const txt = document.getElementById('guest-text').value.trim();
         if(!txt) return;
@@ -495,7 +564,6 @@
 
         newItem.innerHTML = `<div class="meta">GUEST // ${dateStr}</div><div>${txt}</div>`;
         guestList.prepend(newItem);
-
         document.getElementById('guest-text').value = '';
     }
 </script>
