@@ -105,12 +105,12 @@
             box-shadow: inset 0 -3px 0 var(--main-pink);
         }
 
-        /* 탭 콘텐츠 공통 */
+        /* 🔒 탭 콘텐츠 강제 분리 설정 */
         .tab-content {
-            display: none;
+            display: none !important; /* 기본 상태에서는 절대 안 보임 */
         }
         .tab-content.active {
-            display: block;
+            display: block !important; /* active 클래스가 붙을 때만 등장 */
             animation: fadeIn 0.25s ease-in-out;
         }
 
@@ -343,7 +343,7 @@
         <h1 class="archive-title">9c3 ARCHIVE</h1>
     </header>
 
-    <!-- 📌 [탭 메뉴 선택 바] -->
+    <!-- 📌 [상단 탭 메뉴 선택 바] -->
     <nav class="tab-menu">
         <button class="tab-btn active" onclick="switchTab('profile', this)">PROFILE</button>
         <button class="tab-btn" onclick="switchTab('logs', this)">LOG ARCHIVE</button>
