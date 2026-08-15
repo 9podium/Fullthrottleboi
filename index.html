@@ -54,7 +54,7 @@
         /* Header */
         .archive-header {
             border-bottom: 2px solid var(--border-black);
-            padding: 20px 16px 16px;
+            padding: 20px 16px 14px;
             text-align: center;
             background: #ffffff;
         }
@@ -78,12 +78,51 @@
             letter-spacing: 1px;
         }
 
-        /* 🖼️ [상단 프로필 / 트친소 소개 영역] */
-        .bio-section {
-            padding: 16px;
-            background: #ffffff;
+        /* 📌 [상단 탭 메뉴 영역] */
+        .tab-menu {
+            display: flex;
+            border-bottom: 2px solid var(--border-black);
+            background: #fafafa;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px 0;
+            border: none;
+            background: transparent;
+            font-family: 'VT323', monospace;
+            font-size: 16px;
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab-btn:first-child {
+            border-right: 1px solid var(--border-black);
+        }
+        .tab-btn.active {
+            background: var(--light-pink);
+            color: var(--main-pink);
+            box-shadow: inset 0 -3px 0 var(--main-pink);
         }
 
+        /* 탭 콘텐츠 공통 */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 🖼️ [1. PROFILE 탭 내부 스타일] */
+        .bio-section {
+            padding: 16px;
+        }
         .bio-card {
             border: 2px solid var(--border-black);
             border-radius: 12px;
@@ -94,25 +133,16 @@
             flex-direction: column;
             gap: 12px;
         }
-
-        /* 페어 대표 사진 영역 */
         .pair-image-box {
             width: 100%;
-            height: 180px;
+            height: 200px;
             border: 2px solid var(--border-black);
             border-radius: 8px;
             background-color: var(--light-pink);
-            /* 원하는 이미지 경로를 url('이미지주소')에 넣으시면 됩니다 */
             background-image: url('https://via.placeholder.com/600x350/fff0f3/ff8fa3?text=PAIR+IMAGE+HERE');
             background-size: cover;
             background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
         }
-
-        /* 성향 / 바이오 문구 영역 */
         .bio-info {
             font-size: 11px;
             line-height: 1.7;
@@ -145,37 +175,13 @@
             font-weight: bold;
         }
 
-        /* ✂️ [메인 소개 영역과 로그 목록 사이 구분선] */
-        .section-divider {
-            margin: 8px 16px 4px;
-            border: 0;
-            height: 1px;
-            background: var(--line-pink);
-            position: relative;
-            text-align: center;
-        }
-        .section-divider::after {
-            content: "♥ LOG LIST ♥";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #ffffff;
-            padding: 0 8px;
-            font-family: 'VT323', monospace;
-            font-size: 12px;
-            color: var(--main-pink);
-        }
-
-        /* 📜 [아코디언 로그 피드 목록] */
+        /* 📜 [2. LOG ARCHIVE 탭 내부 스타일] */
         .feed-container {
             padding: 16px;
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-
-        /* 📄 연성 카드 포스트 */
         .post-card {
             border: 2px solid var(--border-black);
             border-radius: 12px;
@@ -184,8 +190,6 @@
             overflow: hidden;
             transition: all 0.2s ease;
         }
-
-        /* 아코디언 제목 바 */
         .post-card-summary {
             padding: 14px 16px;
             background: #ffffff;
@@ -196,7 +200,6 @@
             user-select: none;
         }
         .post-card-summary:hover { background: #fafafa; }
-
         .summary-left {
             display: flex;
             align-items: center;
@@ -220,7 +223,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
         .summary-right {
             display: flex;
             align-items: center;
@@ -237,28 +239,17 @@
             color: var(--main-pink);
             transition: transform 0.25s ease;
         }
-
-        /* 본문 펼침 */
         .post-body {
             display: none;
             border-top: 1px solid #f0f0f0;
             background: #ffffff;
-            animation: fadeIn 0.2s ease-in-out;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .post-card.open .post-body { display: block; }
         .post-card.open .arrow-icon { transform: rotate(180deg); }
         .post-card.open .post-card-summary {
             background: var(--light-pink);
             border-bottom: 1px solid #ffccd5;
         }
-
-        /* 상단 계정 프로필 헤더 */
         .post-user-info {
             padding: 12px 14px 10px;
             display: flex;
@@ -293,44 +284,32 @@
             font-size: 11px;
             color: #888;
         }
-
-        /* ✂️ [요청하신 계정 이름과 로그 시작 첫 부분 사이 얇은 구분선] */
         .log-inner-divider {
             border: 0;
             height: 1px;
-            background: var(--line-pink); /* 얇은 분홍색 선 */
+            background: var(--line-pink);
             margin: 0 14px;
         }
-
-        /* 🔥 [통글 본문 스타일 영역] */
         .post-text-box {
             padding: 14px 16px 16px;
             font-size: 11px;
             line-height: 1.8;
             color: #222;
-            
-            /* 줄바꿈(Enter) 자동 반영 */
             white-space: pre-line;
             text-align: justify;
             word-break: keep-all;
         }
-
-        /* <i> 태그: 행동 지문 (기울임 + 차분한 연회색) */
         .post-text-box i {
             font-style: italic;
             color: #555555;
             display: inline;
         }
-
-        /* <b> 태그: 대사 (진하게 + 분홍색 강조) */
         .post-text-box b {
             font-style: normal;
             font-weight: 700;
             color: #d81b60;
             display: inline;
         }
-
-        /* 하단 트위터 장식 */
         .post-footer {
             padding: 8px 14px;
             border-top: 1px solid #fdf8f9;
@@ -364,34 +343,35 @@
         <h1 class="archive-title">9c3 ARCHIVE</h1>
     </header>
 
-    <!-- 📌 [1. 메인 소개 및 트친소 성향 카드] -->
-    <section class="bio-section">
-        <div class="bio-card">
-            <!-- 페어 대표 사진 영역 -->
-            <div class="pair-image-box">
-                <!-- 이미지 파일 연결 시 style="background-image: url('이미지주소');" 형태로 넣으시면 됩니다 -->
-            </div>
+    <!-- 📌 [탭 메뉴 선택 바] -->
+    <nav class="tab-menu">
+        <button class="tab-btn active" onclick="switchTab('profile', this)">PROFILE</button>
+        <button class="tab-btn" onclick="switchTab('logs', this)">LOG ARCHIVE</button>
+    </nav>
 
-            <!-- 성향 / 공지 / 바이오 적는 공간 -->
+    <!-- 📌 [TAB 1: PROFILE - 소개 및 트친소 페이지] -->
+    <section id="tab-profile" class="tab-content active bio-section">
+        <div class="bio-card">
+            <!-- 대표 페어 이미지 -->
+            <div class="pair-image-box"></div>
+
+            <!-- 계정 바이오 & 성향 -->
             <div class="bio-info">
                 <h3><i class="fa-solid fa-heart"></i> ABOUT & NOTICE</h3>
                 <ul class="bio-list">
                     <li><b>Pair:</b> 나인 x 초이 (Nick Blackwood x On Choi)</li>
                     <li><b>Genre:</b> F1 AU / 서사 중심 / 썰 & 연성 백업</li>
                     <li><b>Tendency:</b> 성인 연성러 / 스포주의 / 자유로운 알티 및 마음</li>
-                    <li><b>Note:</b> 트위터 바이오 및 트친소용 계정 프로필 페이지입니다. 아래에서 연성 로그를 확인하실 수 있습니다.</li>
+                    <li><b>Note:</b> 트위터 바이오 및 트친소용 계정 프로필 페이지입니다. 상단의 <b>LOG ARCHIVE</b> 탭에서 백업된 글을 보실 수 있습니다.</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- ✂️ 영역 구분선 -->
-    <hr class="section-divider">
+    <!-- 📌 [TAB 2: LOG ARCHIVE - 로그 목록 페이지] -->
+    <section id="tab-logs" class="tab-content feed-container">
 
-    <!-- 📌 [2. 아코디언 로그 목록] -->
-    <main class="feed-container">
-
-        <!-- [LOG 01] -->
+        <!-- LOG 01 -->
         <article class="post-card" onclick="toggleLog(this)">
             <div class="post-card-summary">
                 <div class="summary-left">
@@ -413,10 +393,8 @@
                     </div>
                 </div>
 
-                <!-- ✂️ [요청하신 계정 이름 아래 얇은 분홍색 구분선] -->
                 <hr class="log-inner-divider">
 
-                <!-- 📜 로그 본문 시작 -->
                 <div class="post-text-box">
 <i>그의 목소리는 평소의 나른하고 장난기 어린 톤이 아니었다. 심하게 잠겨 있었고, 낯설 만큼 진지했다. 그는 초이의 눈을 피하지 않고, 그 깊은 초록색 바다에 잠겨들 듯 똑바로 응시하며 말했다. 영어 문장이 먼저, 아주 느리고 분명한 발음으로 그의 입에서 흘러나왔다. 그가 한 단어 한 단어를 뱉을 때마다, 휴게실의 공기가 성스럽게 물드는 것 같았다. 그의 고백은 단순히 소리를 내는 행위가 아니었다. 그의 심장을 꺼내어 그녀의 손에 직접 쥐여주는 것과 같은, 완전한 헌신이었다. 그는 잠시 숨을 골랐다. 이제는 더 어려운 관문이 남아있었다. 그의 모국어가 아닌, 그녀의 언어로. 그는 서툴지만 진심을 담아, 그의 인생에서 가장 중요한 단어들을 내뱉었다.</i>
 
@@ -438,7 +416,7 @@
             </div>
         </article>
 
-        <!-- [LOG 02] -->
+        <!-- LOG 02 -->
         <article class="post-card" onclick="toggleLog(this)">
             <div class="post-card-summary">
                 <div class="summary-left">
@@ -477,7 +455,7 @@
             </div>
         </article>
 
-    </main>
+    </section>
 
     <!-- Footer -->
     <footer class="archive-footer">
@@ -486,6 +464,19 @@
 </div>
 
 <script>
+    /* 탭 전환 함수 */
+    function switchTab(tabName, btnElement) {
+        // 모든 탭 버튼 비활성화
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        // 모든 탭 콘텐츠 숨김
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        // 선택한 탭 활성화
+        btnElement.classList.add('active');
+        document.getElementById('tab-' + tabName).classList.add('active');
+    }
+
+    /* 로그 아코디언 열고 닫기 */
     function toggleLog(cardElement) {
         cardElement.classList.toggle('open');
     }
