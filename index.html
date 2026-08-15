@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>9c3 :: LOG ARCHIVE</title>
+    <title>9c3 :: BIO & LOG ARCHIVE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+KR:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');
@@ -13,6 +13,7 @@
             --light-pink: #fff0f3;
             --border-black: #111111;
             --text-dark: #222222;
+            --line-pink: #ffccd5;
         }
 
         * {
@@ -77,7 +78,96 @@
             letter-spacing: 1px;
         }
 
-        /* 📜 아코디언 피드 목록 */
+        /* 🖼️ [상단 프로필 / 트친소 소개 영역] */
+        .bio-section {
+            padding: 16px;
+            background: #ffffff;
+        }
+
+        .bio-card {
+            border: 2px solid var(--border-black);
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 3px 3px 0px var(--border-black);
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* 페어 대표 사진 영역 */
+        .pair-image-box {
+            width: 100%;
+            height: 180px;
+            border: 2px solid var(--border-black);
+            border-radius: 8px;
+            background-color: var(--light-pink);
+            /* 원하는 이미지 경로를 url('이미지주소')에 넣으시면 됩니다 */
+            background-image: url('https://via.placeholder.com/600x350/fff0f3/ff8fa3?text=PAIR+IMAGE+HERE');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* 성향 / 바이오 문구 영역 */
+        .bio-info {
+            font-size: 11px;
+            line-height: 1.7;
+            color: #333;
+        }
+        .bio-info h3 {
+            font-family: 'VT323', monospace;
+            font-size: 16px;
+            color: var(--main-pink);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .bio-list {
+            list-style: none;
+            padding: 0;
+        }
+        .bio-list li {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 3px;
+            word-break: keep-all;
+        }
+        .bio-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--main-pink);
+            font-weight: bold;
+        }
+
+        /* ✂️ [메인 소개 영역과 로그 목록 사이 구분선] */
+        .section-divider {
+            margin: 8px 16px 4px;
+            border: 0;
+            height: 1px;
+            background: var(--line-pink);
+            position: relative;
+            text-align: center;
+        }
+        .section-divider::after {
+            content: "♥ LOG LIST ♥";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            padding: 0 8px;
+            font-family: 'VT323', monospace;
+            font-size: 12px;
+            color: var(--main-pink);
+        }
+
+        /* 📜 [아코디언 로그 피드 목록] */
         .feed-container {
             padding: 16px;
             display: flex;
@@ -168,9 +258,9 @@
             border-bottom: 1px solid #ffccd5;
         }
 
-        /* 상단 유저 헤더 */
+        /* 상단 계정 프로필 헤더 */
         .post-user-info {
-            padding: 12px 14px 8px;
+            padding: 12px 14px 10px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -204,14 +294,22 @@
             color: #888;
         }
 
+        /* ✂️ [요청하신 계정 이름과 로그 시작 첫 부분 사이 얇은 구분선] */
+        .log-inner-divider {
+            border: 0;
+            height: 1px;
+            background: var(--line-pink); /* 얇은 분홍색 선 */
+            margin: 0 14px;
+        }
+
         /* 🔥 [통글 본문 스타일 영역] */
         .post-text-box {
-            padding: 12px 16px 16px;
+            padding: 14px 16px 16px;
             font-size: 11px;
             line-height: 1.8;
             color: #222;
             
-            /* 핵심: 줄바꿈(Enter) 자동 반영 */
+            /* 줄바꿈(Enter) 자동 반영 */
             white-space: pre-line;
             text-align: justify;
             word-break: keep-all;
@@ -224,7 +322,7 @@
             display: inline;
         }
 
-        /* <b> 태그: 대사 (진하게 + 분홍색 강조 + 약간 큼) */
+        /* <b> 태그: 대사 (진하게 + 분홍색 강조) */
         .post-text-box b {
             font-style: normal;
             font-weight: 700;
@@ -263,13 +361,37 @@
     <!-- Header -->
     <header class="archive-header">
         <div class="header-tag">♥ @fullthrottleboi</div>
-        <h1 class="archive-title">9c3 LOG ARCHIVE</h1>
+        <h1 class="archive-title">9c3 ARCHIVE</h1>
     </header>
 
-    <!-- Main Log Feed -->
+    <!-- 📌 [1. 메인 소개 및 트친소 성향 카드] -->
+    <section class="bio-section">
+        <div class="bio-card">
+            <!-- 페어 대표 사진 영역 -->
+            <div class="pair-image-box">
+                <!-- 이미지 파일 연결 시 style="background-image: url('이미지주소');" 형태로 넣으시면 됩니다 -->
+            </div>
+
+            <!-- 성향 / 공지 / 바이오 적는 공간 -->
+            <div class="bio-info">
+                <h3><i class="fa-solid fa-heart"></i> ABOUT & NOTICE</h3>
+                <ul class="bio-list">
+                    <li><b>Pair:</b> 나인 x 초이 (Nick Blackwood x On Choi)</li>
+                    <li><b>Genre:</b> F1 AU / 서사 중심 / 썰 & 연성 백업</li>
+                    <li><b>Tendency:</b> 성인 연성러 / 스포주의 / 자유로운 알티 및 마음</li>
+                    <li><b>Note:</b> 트위터 바이오 및 트친소용 계정 프로필 페이지입니다. 아래에서 연성 로그를 확인하실 수 있습니다.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✂️ 영역 구분선 -->
+    <hr class="section-divider">
+
+    <!-- 📌 [2. 아코디언 로그 목록] -->
     <main class="feed-container">
 
-        <!-- 📌 [LOG 01 - 통글 작성 예시] -->
+        <!-- [LOG 01] -->
         <article class="post-card" onclick="toggleLog(this)">
             <div class="post-card-summary">
                 <div class="summary-left">
@@ -291,7 +413,10 @@
                     </div>
                 </div>
 
-                <!-- 📜 하나의 상자 안에 통글로 작성하는 영역 -->
+                <!-- ✂️ [요청하신 계정 이름 아래 얇은 분홍색 구분선] -->
+                <hr class="log-inner-divider">
+
+                <!-- 📜 로그 본문 시작 -->
                 <div class="post-text-box">
 <i>그의 목소리는 평소의 나른하고 장난기 어린 톤이 아니었다. 심하게 잠겨 있었고, 낯설 만큼 진지했다. 그는 초이의 눈을 피하지 않고, 그 깊은 초록색 바다에 잠겨들 듯 똑바로 응시하며 말했다. 영어 문장이 먼저, 아주 느리고 분명한 발음으로 그의 입에서 흘러나왔다. 그가 한 단어 한 단어를 뱉을 때마다, 휴게실의 공기가 성스럽게 물드는 것 같았다. 그의 고백은 단순히 소리를 내는 행위가 아니었다. 그의 심장을 꺼내어 그녀의 손에 직접 쥐여주는 것과 같은, 완전한 헌신이었다. 그는 잠시 숨을 골랐다. 이제는 더 어려운 관문이 남아있었다. 그의 모국어가 아닌, 그녀의 언어로. 그는 서툴지만 진심을 담아, 그의 인생에서 가장 중요한 단어들을 내뱉었다.</i>
 
@@ -309,6 +434,45 @@
                     <span><i class="fa-regular fa-comment"></i> 1</span>
                     <span><i class="fa-solid fa-retweet"></i> 12</span>
                     <span><i class="fa-solid fa-heart" style="color:var(--main-pink);"></i> 99</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- [LOG 02] -->
+        <article class="post-card" onclick="toggleLog(this)">
+            <div class="post-card-summary">
+                <div class="summary-left">
+                    <span class="ep-badge">EP.02</span>
+                    <span class="post-title">빗길 서킷과 피트스탑 대화</span>
+                </div>
+                <div class="summary-right">
+                    <span class="post-date">05.01</span>
+                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </div>
+            </div>
+
+            <div class="post-body">
+                <div class="post-user-info">
+                    <div class="avatar">9c3</div>
+                    <div class="user-names">
+                        <span class="nickname">9c3</span>
+                        <span class="handle">@fullthrottleboi</span>
+                    </div>
+                </div>
+
+                <hr class="log-inner-divider">
+
+                <div class="post-text-box">
+<i>피트 스탑의 열기와 빗소리가 뒤섞이는 서킷. 나인은 헬멧 바이저를 올리며 초이를 바라보았다.</i>
+
+<b>"Is that all you've got for me today?"
+(오늘 나한테 해줄 말이 그게 전부야?)</b>
+                </div>
+
+                <div class="post-footer">
+                    <span><i class="fa-regular fa-comment"></i> 0</span>
+                    <span><i class="fa-solid fa-retweet"></i> 5</span>
+                    <span><i class="fa-solid fa-heart" style="color:var(--main-pink);"></i> 42</span>
                 </div>
             </div>
         </article>
